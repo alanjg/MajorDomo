@@ -1,0 +1,97 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="DominionPhone.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	FontFamily="{StaticResource PhoneFontFamilyNormal}"
+	FontSize="{StaticResource PhoneFontSizeNormal}"
+	Foreground="{StaticResource PhoneForegroundBrush}"
+	SupportedOrientations="Portrait" Orientation="Portrait"
+	mc:Ignorable="d"
+	xmlns:local="clr-namespace:DominionPhone"
+	shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+		<Grid.Resources>
+			<DataTemplate x:Key="GameSetTemplate">
+				<CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Content="{Binding SetName}" />
+			</DataTemplate>
+			<local:CardUseTypeConverter x:Key="CardUseTypeConverter"/>
+
+			<DataTemplate x:Key="CardUseTemplate">
+				<TextBlock Text="{Binding Converter={StaticResource CardUseTypeConverter}}"/>
+			</DataTemplate>
+
+			<local:StartingHandTypeConverter x:Key="StartingHandTypeConverter"/>
+			<DataTemplate x:Key="StartingHandTemplate">
+				<TextBlock Text="{Binding Converter={StaticResource StartingHandTypeConverter}}"/>
+			</DataTemplate>
+		</Grid.Resources>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!--TitlePanel contains the name of the application and page title-->
+		<StackPanel Grid.Row="0" Margin="12,17,0,28">
+			<TextBlock Text="MAJORDOMO" Style="{StaticResource PhoneTextNormalStyle}"/>
+			<TextBlock Text="settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+		</StackPanel>
+
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
+			<StackPanel x:Name="ContentPanel">
+				<TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Difficulty</TextBlock>
+				<RadioButton GroupName="Difficulty" IsChecked="{Binding Easy, Mode=TwoWay}">Scout</RadioButton>
+				<TextBlock TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+				<RadioButton GroupName="Difficulty" IsChecked="{Binding Medium, Mode=TwoWay}">Advisor</RadioButton>
+				<TextBlock TextWrapping="Wrap" Margin="40,0,10,0">Advisor will think for 15 seconds at the start of the game to plan strategy.</TextBlock>
+				<RadioButton GroupName="Difficulty" IsChecked="{Binding Hard, Mode=TwoWay}">Tactician</RadioButton>
+				<TextBlock TextWrapping="Wrap" Margin="40,0,10,0">Tactician will think for 15 seconds at the start of the game to plan strategy, and will think on some turns before playing.</TextBlock>
+				<StackPanel Name="SettingsPanel">
+					<TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Options</TextBlock>
+					<CheckBox Name="ShowPlayerScoreCheckBox" IsChecked="{Binding ShowPlayerScore, Mode=TwoWay}">Show player score</CheckBox>
+					<CheckBox IsChecked="{Binding UseRandomCardsFromChosenSetsOnly, Mode=TwoWay}">
+						<TextBlock TextWrapping="Wrap">Use random cards (bane, black market) from chosen sets only</TextBlock>
+					</CheckBox>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<Border Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,0,-2,0"/>
+						<TextBlock Grid.Row="0" Grid.Column="0" Margin="12,0,10,0">Use Colonies:</TextBlock>
+						<ComboBox Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" ItemsSource="{Binding UseColoniesChoices}" SelectedItem="{Binding UseColonies, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+						<Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,4,-2,0"/>
+						<TextBlock Grid.Row="1" Grid.Column="0" Margin="12,4,10,0">Use Shelters:</TextBlock>
+						<ComboBox Grid.Row="1" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding UseSheltersChoices}" SelectedItem="{Binding UseShelters, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+						<Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,4,-2,0"/>
+						<TextBlock Grid.Row="2" Grid.Column="0" Margin="12,4,10,0">Starting Hands:</TextBlock>
+						<ComboBox Grid.Row="2" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding StartingHandTypeChoices}" SelectedItem="{Binding StartingHandType, Mode=TwoWay}" ItemTemplate="{StaticResource StartingHandTemplate}"></ComboBox>
+					</Grid>					
+				</StackPanel>
+				<TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Card sets</TextBlock>
+				<ItemsControl x:Name="GameSetsList" ItemsSource="{Binding GameSets}" ItemTemplate="{StaticResource GameSetTemplate}"/>
+				<TextBlock Margin="20,0,20,0">Prohibited Cards</TextBlock>
+				<TextBox x:Name="ProhibitedCardsTextBox" Margin="10,0,10,0" Text="{Binding ProhibitedCardsString, Mode=TwoWay}"></TextBox>
+				<TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Multiplayer</TextBlock>
+				<TextBlock>Online multiplayer is under development and may not be functional.</TextBlock>
+				<CheckBox Margin="10,10,0,0" Name="EnableMultiplayerCheckBox" IsChecked="{Binding HasEnabledMultiplayer, Mode=TwoWay}">Enable online multiplayer (beta)</CheckBox>
+				<TextBlock Margin="20,0,20,0">User Name</TextBlock>
+				<TextBox x:Name="UserNameTextBox"  Margin="10,0,10,0" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
+				<TextBlock Margin="20,0,20,0">Custom Server Address (used for debugging)</TextBlock>
+				<TextBox x:Name="ServerAddressTextBox" Margin="10,0,10,0" Text="{Binding ServerAddress, Mode=TwoWay}"></TextBox>
+				
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+
+</phone:PhoneApplicationPage>

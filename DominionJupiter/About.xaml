@@ -1,0 +1,61 @@
+﻿<Page
+	x:Name="pageRoot"
+   
+    x:Class="DominionJupiter.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DominionJupiter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+	<Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.Resources>
+			<local:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+			<local:BoolToVisibilityConverter x:Key="BoolToVisibleConverter" />
+		</Grid.Resources>
+		<Grid.ChildrenTransitions>
+			<TransitionCollection>
+				<EntranceThemeTransition/>
+			</TransitionCollection>
+		</Grid.ChildrenTransitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="140"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<StackPanel>
+				<TextBlock Style="{ThemeResource BaseTextBlockStyle}" Padding="20" TextWrapping="Wrap" >MajorDomo is an unofficial computer version of the Dominion card game.  Dominion is published by Rio Grande Games.</TextBlock>
+				<TextBlock Style="{StaticResource SubheaderTextBlockStyle}">Support, bugs, feedback:</TextBlock>
+				<HyperlinkButton Padding="20" NavigateUri="mailto:majordomowp@outlook.com">majordomowp@outlook.com</HyperlinkButton>
+				<TextBlock Style="{StaticResource SubheaderTextBlockStyle}">How to play</TextBlock>
+				<StackPanel Margin="20">
+					<HyperlinkButton NavigateUri="http://wiki.dominionstrategy.com/index.php/New_To_Dominion">Click here if you are new to Dominion</HyperlinkButton>
+					<TextBlock Style="{ThemeResource BaseTextBlockStyle}"></TextBlock>
+					<TextBlock Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap">On your turn, you can play actions or treasures by tapping or clicking the cards in your hand.  You can buy cards during the buy phase(if you can afford them) by tapping on the pile.  If you have extra buys, you must press the End Turn button to end your turn even if you are out of money(since you might want to purchase Copper).  If you have actions left to play, but don't wish to play them, you can press the Buy Phase button to switch to the buy phase - otherwise, MajorDomo will prevent you from buying cards(since once you start the buy phase, you are not allowed to play further actions).</TextBlock>
+					<TextBlock></TextBlock>
+					<TextBlock Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap">Playing some actions and treasures will result in choices.  If the choice is related to a card in the supply, you will have to tap on the supply piles at the top of the screen.  Otherwise, the choice can be made by tapping on the appropriate card column(in hand, in play, etc).  Some choices are optional - in that case, you may choose to do nothing by pressing the OK button.  Some choices allow or require you to choose multiple cards or options, in which case you must press the OK button to confirm your choices.  Some choices will be made automatically if there is only a single option available.</TextBlock>
+					<TextBlock></TextBlock>
+					<TextBlock Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap">You may tap and hold(or right click) a card or pile to see the details of that card.  All card lists are scrollable if you have enough cards(e.g. a large hand), so be aware that you may have more cards off the screen.</TextBlock>
+					<TextBlock></TextBlock>
+					<TextBlock Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap">You can swipe from the bottom(or right click) in the game screen to access a menu that allows you to exit the game.</TextBlock>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+		<!-- Back button and page title -->
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="120"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+			<TextBlock x:Name="pageTitle" Text="about" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+		</Grid>
+	</Grid>
+</Page>

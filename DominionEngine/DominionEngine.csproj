@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5713DEE5-890B-4A02-AF5F-B02A1798AEB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DominionEngine</RootNamespace>
+    <AssemblyName>DominionEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AI\BaseAI.cs" />
+    <Compile Include="AI\BuyList.cs" />
+    <Compile Include="AI\BuyListAI.cs" />
+    <Compile Include="AI\BuyListTrainer.cs" />
+    <Compile Include="AI\BuyListTrainingAI.cs" />
+    <Compile Include="AI\CardComparer.cs" />
+    <Compile Include="AI\CardPriority.cs" />
+    <Compile Include="AI\MonteCarloTreeSearch.cs" />
+    <Compile Include="AI\GarboAI.cs" />
+    <Compile Include="AI\OpeningBook.cs" />
+    <Compile Include="AI\OpeningBookRandomizedAI.cs" />
+    <Compile Include="AI\RandomAI.cs" />
+    <Compile Include="AI\Randomizer.cs" />
+    <Compile Include="AI\SimpleAI.cs" />
+    <Compile Include="Model\CardInfo.cs" />
+    <Compile Include="Model\CardModel.cs" />
+    <Compile Include="Model\CardModelFactory.cs" />
+    <Compile Include="Model\CardSet.cs" />
+    <Compile Include="Model\CardSets.cs" />
+    <Compile Include="Model\Cards\Adventures\AdventuresCardModel.cs" />
+    <Compile Include="Model\Cards\Adventures\AdventuresCardSets.cs" />
+    <Compile Include="Model\Cards\Adventures\Alms.cs" />
+    <Compile Include="Model\Cards\Adventures\Amulet.cs" />
+    <Compile Include="Model\Cards\Adventures\Artificer.cs" />
+    <Compile Include="Model\Cards\Adventures\Ball.cs" />
+    <Compile Include="Model\Cards\Adventures\Bonfire.cs" />
+    <Compile Include="Model\Cards\Adventures\Borrow.cs" />
+    <Compile Include="Model\Cards\Adventures\BridgeTroll.cs" />
+    <Compile Include="Model\Cards\Adventures\CaravanGuard.cs" />
+    <Compile Include="Model\Cards\Adventures\Champion.cs" />
+    <Compile Include="Model\Cards\Adventures\CoinOfTheRealm.cs" />
+    <Compile Include="Model\Cards\Adventures\Disciple.cs" />
+    <Compile Include="Model\Cards\Adventures\DistantLands.cs" />
+    <Compile Include="Model\Cards\Adventures\Dungeon.cs" />
+    <Compile Include="Model\Cards\Adventures\Duplicate.cs" />
+    <Compile Include="Model\Cards\Adventures\Expedition.cs" />
+    <Compile Include="Model\Cards\Adventures\Ferry.cs" />
+    <Compile Include="Model\Cards\Adventures\Fugitive.cs" />
+    <Compile Include="Model\Cards\Adventures\Gear.cs" />
+    <Compile Include="Model\Cards\Adventures\Giant.cs" />
+    <Compile Include="Model\Cards\Adventures\Guide.cs" />
+    <Compile Include="Model\Cards\Adventures\HauntedWoods.cs" />
+    <Compile Include="Model\Cards\Adventures\Hero.cs" />
+    <Compile Include="Model\Cards\Adventures\Hireling.cs" />
+    <Compile Include="Model\Cards\Adventures\Inheritance.cs" />
+    <Compile Include="Model\Cards\Adventures\LostArts.cs" />
+    <Compile Include="Model\Cards\Adventures\LostCity.cs" />
+    <Compile Include="Model\Cards\Adventures\Magpie.cs" />
+    <Compile Include="Model\Cards\Adventures\Messenger.cs" />
+    <Compile Include="Model\Cards\Adventures\Miser.cs" />
+    <Compile Include="Model\Cards\Adventures\Mission.cs" />
+    <Compile Include="Model\Cards\Adventures\Page.cs" />
+    <Compile Include="Model\Cards\Adventures\Pathfinding.cs" />
+    <Compile Include="Model\Cards\Adventures\Peasant.cs" />
+    <Compile Include="Model\Cards\Adventures\Pilgrimage.cs" />
+    <Compile Include="Model\Cards\Adventures\Plan.cs" />
+    <Compile Include="Model\Cards\Adventures\Port.cs" />
+    <Compile Include="Model\Cards\Adventures\Quest.cs" />
+    <Compile Include="Model\Cards\Adventures\Raid.cs" />
+    <Compile Include="Model\Cards\Adventures\Ranger.cs" />
+    <Compile Include="Model\Cards\Adventures\Ratcatcher.cs" />
+    <Compile Include="Model\Cards\Adventures\Raze.cs" />
+    <Compile Include="Model\Cards\Adventures\Relic.cs" />
+    <Compile Include="Model\Cards\Adventures\RoyalCarriage.cs" />
+    <Compile Include="Model\Cards\Adventures\Save.cs" />
+    <Compile Include="Model\Cards\Adventures\ScoutingParty.cs" />
+    <Compile Include="Model\Cards\Adventures\Seaway.cs" />
+    <Compile Include="Model\Cards\Adventures\Soldier.cs" />
+    <Compile Include="Model\Cards\Adventures\Storyteller.cs" />
+    <Compile Include="Model\Cards\Adventures\SwampHag.cs" />
+    <Compile Include="Model\Cards\Adventures\Teacher.cs" />
+    <Compile Include="Model\Cards\Adventures\Trade.cs" />
+    <Compile Include="Model\Cards\Adventures\Training.cs" />
+    <Compile Include="Model\Cards\Adventures\Transmogrify.cs" />
+    <Compile Include="Model\Cards\Adventures\TravellingFair.cs" />
+    <Compile Include="Model\Cards\Adventures\TreasureHunter.cs" />
+    <Compile Include="Model\Cards\Adventures\TreasureTrove.cs" />
+    <Compile Include="Model\Cards\Adventures\Warrior.cs" />
+    <Compile Include="Model\Cards\Adventures\WineMerchant.cs" />
+    <Compile Include="Model\Cards\Alchemy\Alchemist.cs" />
+    <Compile Include="Model\Cards\Alchemy\AlchemyCardModel.cs" />
+    <Compile Include="Model\Cards\Alchemy\AlchemyCardSets.cs" />
+    <Compile Include="Model\Cards\Alchemy\Apothecary.cs" />
+    <Compile Include="Model\Cards\Alchemy\Apprentice.cs" />
+    <Compile Include="Model\Cards\Alchemy\Familiar.cs" />
+    <Compile Include="Model\Cards\Alchemy\Golem.cs" />
+    <Compile Include="Model\Cards\Alchemy\Herbalist.cs" />
+    <Compile Include="Model\Cards\Alchemy\PhilosophersStone.cs" />
+    <Compile Include="Model\Cards\Alchemy\Possession.cs" />
+    <Compile Include="Model\Cards\Alchemy\ScryingPool.cs" />
+    <Compile Include="Model\Cards\Alchemy\Transmute.cs" />
+    <Compile Include="Model\Cards\Alchemy\University.cs" />
+    <Compile Include="Model\Cards\Alchemy\Vineyard.cs" />
+    <Compile Include="Model\Cards\Base\Adventurer.cs" />
+    <Compile Include="Model\Cards\Base\BaseCardModel.cs" />
+    <Compile Include="Model\Cards\Base\BaseCardSets.cs" />
+    <Compile Include="Model\Cards\Base\Bureaucrat.cs" />
+    <Compile Include="Model\Cards\Base\Cellar.cs" />
+    <Compile Include="Model\Cards\Base\Chancellor.cs" />
+    <Compile Include="Model\Cards\Base\Chapel.cs" />
+    <Compile Include="Model\Cards\Base\CouncilRoom.cs" />
+    <Compile Include="Model\Cards\Base\Feast.cs" />
+    <Compile Include="Model\Cards\Base\Festival.cs" />
+    <Compile Include="Model\Cards\Base\Gardens.cs" />
+    <Compile Include="Model\Cards\Base\Laboratory.cs" />
+    <Compile Include="Model\Cards\Base\Library.cs" />
+    <Compile Include="Model\Cards\Base\Market.cs" />
+    <Compile Include="Model\Cards\Base\Militia.cs" />
+    <Compile Include="Model\Cards\Base\Mine.cs" />
+    <Compile Include="Model\Cards\Base\Moat.cs" />
+    <Compile Include="Model\Cards\Base\Moneylender.cs" />
+    <Compile Include="Model\Cards\Base\Remodel.cs" />
+    <Compile Include="Model\Cards\Base\Smithy.cs" />
+    <Compile Include="Model\Cards\Base\Spy.cs" />
+    <Compile Include="Model\Cards\Base\Thief.cs" />
+    <Compile Include="Model\Cards\Base\ThroneRoom.cs" />
+    <Compile Include="Model\Cards\Base\Treasures.cs" />
+    <Compile Include="Model\Cards\Base\Victorys.cs" />
+    <Compile Include="Model\Cards\Base\Village.cs" />
+    <Compile Include="Model\Cards\Base\Witch.cs" />
+    <Compile Include="Model\Cards\Base\Woodcutter.cs" />
+    <Compile Include="Model\Cards\Base\Workshop.cs" />
+    <Compile Include="Model\Cards\BlankCard.cs" />
+    <Compile Include="Model\Cards\Cornucopia\BagOfGold.cs" />
+    <Compile Include="Model\Cards\Cornucopia\CornucopiaCardModel.cs" />
+    <Compile Include="Model\Cards\Cornucopia\CornucopiaCardSets.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Diadem.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Fairgrounds.cs" />
+    <Compile Include="Model\Cards\Cornucopia\FarmingVillage.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Followers.cs" />
+    <Compile Include="Model\Cards\Cornucopia\FortuneTeller.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Hamlet.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Harvest.cs" />
+    <Compile Include="Model\Cards\Cornucopia\HornOfPlenty.cs" />
+    <Compile Include="Model\Cards\Cornucopia\HorseTraders.cs" />
+    <Compile Include="Model\Cards\Cornucopia\HuntingParty.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Jester.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Menagerie.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Princess.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Remake.cs" />
+    <Compile Include="Model\Cards\Cornucopia\Tournament.cs" />
+    <Compile Include="Model\Cards\Cornucopia\TrustySteed.cs" />
+    <Compile Include="Model\Cards\Cornucopia\YoungWitch.cs" />
+    <Compile Include="Model\Cards\DarkAges\AbandonedMine.cs" />
+    <Compile Include="Model\Cards\DarkAges\Altar.cs" />
+    <Compile Include="Model\Cards\DarkAges\Armory.cs" />
+    <Compile Include="Model\Cards\DarkAges\BanditCamp.cs" />
+    <Compile Include="Model\Cards\DarkAges\BandOfMisfits.cs" />
+    <Compile Include="Model\Cards\DarkAges\Beggar.cs" />
+    <Compile Include="Model\Cards\DarkAges\Catacombs.cs" />
+    <Compile Include="Model\Cards\DarkAges\Count.cs" />
+    <Compile Include="Model\Cards\DarkAges\Counterfeit.cs" />
+    <Compile Include="Model\Cards\DarkAges\Cultist.cs" />
+    <Compile Include="Model\Cards\DarkAges\DameAnna.cs" />
+    <Compile Include="Model\Cards\DarkAges\DameJosephine.cs" />
+    <Compile Include="Model\Cards\DarkAges\DameMolly.cs" />
+    <Compile Include="Model\Cards\DarkAges\DameNatalie.cs" />
+    <Compile Include="Model\Cards\DarkAges\DameSylvia.cs" />
+    <Compile Include="Model\Cards\DarkAges\DarkAgesCardModel.cs" />
+    <Compile Include="Model\Cards\DarkAges\DarkAgesCardSets.cs" />
+    <Compile Include="Model\Cards\DarkAges\DeathCart.cs" />
+    <Compile Include="Model\Cards\DarkAges\Feodum.cs" />
+    <Compile Include="Model\Cards\DarkAges\Forager.cs" />
+    <Compile Include="Model\Cards\DarkAges\Fortress.cs" />
+    <Compile Include="Model\Cards\DarkAges\Graverobber.cs" />
+    <Compile Include="Model\Cards\DarkAges\Hermit.cs" />
+    <Compile Include="Model\Cards\DarkAges\Hovel.cs" />
+    <Compile Include="Model\Cards\DarkAges\HuntingGrounds.cs" />
+    <Compile Include="Model\Cards\DarkAges\Ironmonger.cs" />
+    <Compile Include="Model\Cards\DarkAges\JunkDealer.cs" />
+    <Compile Include="Model\Cards\DarkAges\Knights.cs" />
+    <Compile Include="Model\Cards\DarkAges\Madman.cs" />
+    <Compile Include="Model\Cards\DarkAges\Marauder.cs" />
+    <Compile Include="Model\Cards\DarkAges\MarketSquare.cs" />
+    <Compile Include="Model\Cards\DarkAges\Mercenary.cs" />
+    <Compile Include="Model\Cards\DarkAges\Mystic.cs" />
+    <Compile Include="Model\Cards\DarkAges\Necropolis.cs" />
+    <Compile Include="Model\Cards\DarkAges\OvergrownEstate.cs" />
+    <Compile Include="Model\Cards\DarkAges\Pillage.cs" />
+    <Compile Include="Model\Cards\DarkAges\PoorHouse.cs" />
+    <Compile Include="Model\Cards\DarkAges\Procession.cs" />
+    <Compile Include="Model\Cards\DarkAges\Rats.cs" />
+    <Compile Include="Model\Cards\DarkAges\Rebuild.cs" />
+    <Compile Include="Model\Cards\DarkAges\Rogue.cs" />
+    <Compile Include="Model\Cards\DarkAges\RuinedLibrary.cs" />
+    <Compile Include="Model\Cards\DarkAges\RuinedMarket.cs" />
+    <Compile Include="Model\Cards\DarkAges\RuinedVillage.cs" />
+    <Compile Include="Model\Cards\DarkAges\Sage.cs" />
+    <Compile Include="Model\Cards\DarkAges\Scavenger.cs" />
+    <Compile Include="Model\Cards\DarkAges\SirBailey.cs" />
+    <Compile Include="Model\Cards\DarkAges\SirDestry.cs" />
+    <Compile Include="Model\Cards\DarkAges\SirMartin.cs" />
+    <Compile Include="Model\Cards\DarkAges\SirMichael.cs" />
+    <Compile Include="Model\Cards\DarkAges\SirVander.cs" />
+    <Compile Include="Model\Cards\DarkAges\Spoils.cs" />
+    <Compile Include="Model\Cards\DarkAges\Squire.cs" />
+    <Compile Include="Model\Cards\DarkAges\Storeroom.cs" />
+    <Compile Include="Model\Cards\DarkAges\Survivors.cs" />
+    <Compile Include="Model\Cards\DarkAges\Urchin.cs" />
+    <Compile Include="Model\Cards\DarkAges\Vagrant.cs" />
+    <Compile Include="Model\Cards\DarkAges\WanderingMinstrel.cs" />
+    <Compile Include="Model\Cards\Guilds\Advisor.cs" />
+    <Compile Include="Model\Cards\Guilds\Baker.cs" />
+    <Compile Include="Model\Cards\Guilds\Butcher.cs" />
+    <Compile Include="Model\Cards\Guilds\CandlestickMaker.cs" />
+    <Compile Include="Model\Cards\Guilds\Doctor.cs" />
+    <Compile Include="Model\Cards\Guilds\GuildsCardModel.cs" />
+    <Compile Include="Model\Cards\Guilds\GuildsCardSets.cs" />
+    <Compile Include="Model\Cards\Guilds\Herald.cs" />
+    <Compile Include="Model\Cards\Guilds\Journeyman.cs" />
+    <Compile Include="Model\Cards\Guilds\Masterpiece.cs" />
+    <Compile Include="Model\Cards\Guilds\MerchantGuild.cs" />
+    <Compile Include="Model\Cards\Guilds\Plaza.cs" />
+    <Compile Include="Model\Cards\Guilds\Soothsayer.cs" />
+    <Compile Include="Model\Cards\Guilds\Stonemason.cs" />
+    <Compile Include="Model\Cards\Guilds\Taxman.cs" />
+    <Compile Include="Model\Cards\Hinterlands\BorderVillage.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Cache.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Cartographer.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Crossroads.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Develop.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Duchess.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Embassy.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Farmland.cs" />
+    <Compile Include="Model\Cards\Hinterlands\FoolsGold.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Haggler.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Highway.cs" />
+    <Compile Include="Model\Cards\Hinterlands\HinterlandsCardModel.cs" />
+    <Compile Include="Model\Cards\Hinterlands\HinterlandsCardSets.cs" />
+    <Compile Include="Model\Cards\Hinterlands\IllGottenGains.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Inn.cs" />
+    <Compile Include="Model\Cards\Hinterlands\JackOfAllTrades.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Mandarin.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Margrave.cs" />
+    <Compile Include="Model\Cards\Hinterlands\NobleBrigand.cs" />
+    <Compile Include="Model\Cards\Hinterlands\NomadCamp.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Oasis.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Oracle.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Scheme.cs" />
+    <Compile Include="Model\Cards\Hinterlands\SilkRoad.cs" />
+    <Compile Include="Model\Cards\Hinterlands\SpiceMerchant.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Stables.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Trader.cs" />
+    <Compile Include="Model\Cards\Hinterlands\Tunnel.cs" />
+    <Compile Include="Model\Cards\Intrigue\Baron.cs" />
+    <Compile Include="Model\Cards\Intrigue\Bridge.cs" />
+    <Compile Include="Model\Cards\Intrigue\Conspirator.cs" />
+    <Compile Include="Model\Cards\Intrigue\Coppersmith.cs" />
+    <Compile Include="Model\Cards\Intrigue\Courtyard.cs" />
+    <Compile Include="Model\Cards\Intrigue\Duke.cs" />
+    <Compile Include="Model\Cards\Intrigue\GreatHall.cs" />
+    <Compile Include="Model\Cards\Intrigue\Harem.cs" />
+    <Compile Include="Model\Cards\Intrigue\IntrigueCardModel.cs" />
+    <Compile Include="Model\Cards\Intrigue\IntrigueCardSets.cs" />
+    <Compile Include="Model\Cards\Intrigue\Ironworks.cs" />
+    <Compile Include="Model\Cards\Intrigue\Masquerade.cs" />
+    <Compile Include="Model\Cards\Intrigue\MiningVillage.cs" />
+    <Compile Include="Model\Cards\Intrigue\Minion.cs" />
+    <Compile Include="Model\Cards\Intrigue\Nobles.cs" />
+    <Compile Include="Model\Cards\Intrigue\Pawn.cs" />
+    <Compile Include="Model\Cards\Intrigue\Saboteur.cs" />
+    <Compile Include="Model\Cards\Intrigue\Scout.cs" />
+    <Compile Include="Model\Cards\Intrigue\SecretChamber.cs" />
+    <Compile Include="Model\Cards\Intrigue\ShantyTown.cs" />
+    <Compile Include="Model\Cards\Intrigue\Steward.cs" />
+    <Compile Include="Model\Cards\Intrigue\Swindler.cs" />
+    <Compile Include="Model\Cards\Intrigue\Torturer.cs" />
+    <Compile Include="Model\Cards\Intrigue\TradingPost.cs" />
+    <Compile Include="Model\Cards\Intrigue\Tribute.cs" />
+    <Compile Include="Model\Cards\Intrigue\Upgrade.cs" />
+    <Compile Include="Model\Cards\Intrigue\WishingWell.cs" />
+    <Compile Include="Model\Cards\Kingdom.cs" />
+    <Compile Include="Model\Cards\Promo\BlackMarket.cs" />
+    <Compile Include="Model\Cards\Promo\Envoy.cs" />
+    <Compile Include="Model\Cards\Promo\Governor.cs" />
+    <Compile Include="Model\Cards\Promo\Prince.cs" />
+    <Compile Include="Model\Cards\Promo\PromoCardModel.cs" />
+    <Compile Include="Model\Cards\Promo\Stash.cs" />
+    <Compile Include="Model\Cards\Promo\WalledVillage.cs" />
+    <Compile Include="Model\Cards\Prosperity\Bank.cs" />
+    <Compile Include="Model\Cards\Prosperity\Bishop.cs" />
+    <Compile Include="Model\Cards\Prosperity\City.cs" />
+    <Compile Include="Model\Cards\Prosperity\Contraband.cs" />
+    <Compile Include="Model\Cards\Prosperity\CountingHouse.cs" />
+    <Compile Include="Model\Cards\Prosperity\Expand.cs" />
+    <Compile Include="Model\Cards\Prosperity\Forge.cs" />
+    <Compile Include="Model\Cards\Prosperity\Goons.cs" />
+    <Compile Include="Model\Cards\Prosperity\GrandMarket.cs" />
+    <Compile Include="Model\Cards\Prosperity\Hoard.cs" />
+    <Compile Include="Model\Cards\Prosperity\KingsCourt.cs" />
+    <Compile Include="Model\Cards\Prosperity\Loan.cs" />
+    <Compile Include="Model\Cards\Prosperity\Mint.cs" />
+    <Compile Include="Model\Cards\Prosperity\Monument.cs" />
+    <Compile Include="Model\Cards\Prosperity\Mountebank.cs" />
+    <Compile Include="Model\Cards\Prosperity\Peddler.cs" />
+    <Compile Include="Model\Cards\Prosperity\ProsperityCardModel.cs" />
+    <Compile Include="Model\Cards\Prosperity\ProsperityCardSets.cs" />
+    <Compile Include="Model\Cards\Prosperity\Quarry.cs" />
+    <Compile Include="Model\Cards\Prosperity\Rabble.cs" />
+    <Compile Include="Model\Cards\Prosperity\RoyalSeal.cs" />
+    <Compile Include="Model\Cards\Prosperity\Talisman.cs" />
+    <Compile Include="Model\Cards\Prosperity\TradeRoute.cs" />
+    <Compile Include="Model\Cards\Prosperity\Vault.cs" />
+    <Compile Include="Model\Cards\Prosperity\Venture.cs" />
+    <Compile Include="Model\Cards\Prosperity\Watchtower.cs" />
+    <Compile Include="Model\Cards\Prosperity\WorkersVillage.cs" />
+    <Compile Include="Model\Cards\Seaside\Ambassador.cs" />
+    <Compile Include="Model\Cards\Seaside\Bazaar.cs" />
+    <Compile Include="Model\Cards\Seaside\Caravan.cs" />
+    <Compile Include="Model\Cards\Seaside\Cutpurse.cs" />
+    <Compile Include="Model\Cards\Seaside\Embargo.cs" />
+    <Compile Include="Model\Cards\Seaside\Explorer.cs" />
+    <Compile Include="Model\Cards\Seaside\FishingVillage.cs" />
+    <Compile Include="Model\Cards\Seaside\GhostShip.cs" />
+    <Compile Include="Model\Cards\Seaside\Haven.cs" />
+    <Compile Include="Model\Cards\Seaside\Island.cs" />
+    <Compile Include="Model\Cards\Seaside\Lighthouse.cs" />
+    <Compile Include="Model\Cards\Seaside\Lookout.cs" />
+    <Compile Include="Model\Cards\Seaside\MerchantShip.cs" />
+    <Compile Include="Model\Cards\Seaside\NativeVillage.cs" />
+    <Compile Include="Model\Cards\Seaside\Navigator.cs" />
+    <Compile Include="Model\Cards\Seaside\Outpost.cs" />
+    <Compile Include="Model\Cards\Seaside\PearlDiver.cs" />
+    <Compile Include="Model\Cards\Seaside\PirateShip.cs" />
+    <Compile Include="Model\Cards\Seaside\Salvager.cs" />
+    <Compile Include="Model\Cards\Seaside\SeaHag.cs" />
+    <Compile Include="Model\Cards\Seaside\SeasideCardModel.cs" />
+    <Compile Include="Model\Cards\Seaside\SeasideCardSets.cs" />
+    <Compile Include="Model\Cards\Seaside\Smugglers.cs" />
+    <Compile Include="Model\Cards\Seaside\Tactician.cs" />
+    <Compile Include="Model\Cards\Seaside\TreasureMap.cs" />
+    <Compile Include="Model\Cards\Seaside\Treasury.cs" />
+    <Compile Include="Model\Cards\Seaside\Warehouse.cs" />
+    <Compile Include="Model\Cards\Seaside\Wharf.cs" />
+    <Compile Include="Model\Chooser.cs" />
+    <Compile Include="Model\ChooserBase.cs" />
+    <Compile Include="Model\Deck.cs" />
+    <Compile Include="Model\DefaultChooser.cs" />
+    <Compile Include="Model\GameHistory.cs" />
+    <Compile Include="Model\GameModel.cs" />
+    <Compile Include="Model\GameRecord.cs" />
+    <Compile Include="Model\GameResult.cs" />
+    <Compile Include="Model\GameSet.cs" />
+    <Compile Include="Model\Log.cs" />
+    <Compile Include="Model\Pile.cs" />
+    <Compile Include="Model\PileCreator.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\PlayerStrategy.cs" />
+    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Network\AddRemoveUserInfo.cs" />
+    <Compile Include="Network\AuthenticationInfo.cs" />
+    <Compile Include="Network\CardPileStateInfo.cs" />
+    <Compile Include="Network\ChatInfo.cs" />
+    <Compile Include="Network\ChoiceInfo.cs" />
+    <Compile Include="Network\ConnectInfo.cs" />
+    <Compile Include="Network\EnterLobbyInfo.cs" />
+    <Compile Include="Network\ExtraPileInfo.cs" />
+    <Compile Include="Network\GameStateInfo.cs" />
+    <Compile Include="Network\LobbyInfo.cs" />
+    <Compile Include="Network\LogInfo.cs" />
+    <Compile Include="Network\PileStateInfo.cs" />
+    <Compile Include="Network\ActionCardInfo.cs" />
+    <Compile Include="Network\PlayerInfo.cs" />
+    <Compile Include="Network\PlayerStateInfo.cs" />
+    <Compile Include="Network\RequestChoiceInfo.cs" />
+    <Compile Include="Network\SendChatInfo.cs" />
+    <Compile Include="Network\SupplyPileInfo.cs" />
+    <Compile Include="Network\UserInfo.cs" />
+    <Compile Include="Network\GameLobbyModel.cs" />
+    <Compile Include="Network\GameMessages.cs" />
+    <Compile Include="Network\GameSpecification.cs" />
+    <Compile Include="Network\NetworkMessage.cs" />
+    <Compile Include="Network\ServerModel.cs" />
+    <Compile Include="Network\ServerConnection.cs" />
+    <Compile Include="Network\ISocket.cs" />
+    <Compile Include="Network\ServerStateSynchronizer.cs" />
+    <Compile Include="Network\SystemMessages.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CardDisplayModel.cs" />
+    <Compile Include="ViewModel\CardSetViewModel.cs" />
+    <Compile Include="ViewModel\CardViewModel.cs" />
+    <Compile Include="ViewModel\CollectionSynchronizer.cs" />
+    <Compile Include="ViewModel\DeckViewModel.cs" />
+    <Compile Include="ViewModel\EffectViewModel.cs" />
+    <Compile Include="ViewModel\GamePageModel.cs" />
+    <Compile Include="ViewModel\GameViewModel.cs" />
+    <Compile Include="ViewModel\IDisplayable.cs" />
+    <Compile Include="ViewModel\LogViewModel.cs" />
+    <Compile Include="ViewModel\PileViewModel.cs" />
+    <Compile Include="ViewModel\PlayerAction.cs" />
+    <Compile Include="ViewModel\PlayerChoice.cs" />
+    <Compile Include="ViewModel\PlayerViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelDispatcher.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,135 @@
+﻿<Page
+	Name="pageRoot"
+	DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    x:Class="DominionJupiter.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DominionJupiter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+		<!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+		<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+		<Grid.Resources>
+			<DataTemplate x:Key="GameSetTemplate">
+				<CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Content="{Binding SetName}" />
+			</DataTemplate>
+
+			<local:CardUseTypeConverter x:Key="CardUseTypeConverter" />
+			<DataTemplate x:Key="CardUseTemplate">
+				<TextBlock Text="{Binding Converter={StaticResource CardUseTypeConverter}}" />
+			</DataTemplate>
+			<local:StartingHandTypeConverter x:Key="StartingHandTypeConverter" />
+			<DataTemplate x:Key="StartingHandTemplate">
+				<TextBlock Text="{Binding Converter={StaticResource StartingHandTypeConverter}}" />
+			</DataTemplate>
+
+		</Grid.Resources>
+		<Grid.ChildrenTransitions>
+				<TransitionCollection>
+					<EntranceThemeTransition/>
+				</TransitionCollection>
+			</Grid.ChildrenTransitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="140"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+
+			<!--
+            TODO: Content should be placed within the following grid 
+                  to show details for the current item
+        -->
+			<Grid Grid.Row="1" x:Name="contentRegion">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"></ColumnDefinition>
+					<ColumnDefinition Width="200"></ColumnDefinition>
+				</Grid.ColumnDefinitions>
+			<ScrollViewer Grid.Row="1" Margin="12,0,12,0" VerticalScrollBarVisibility="Auto">
+				<StackPanel x:Name="ContentPanel">
+					<StackPanel x:Name="ARMDifficulty">
+						<TextBlock Style="{StaticResource GroupHeaderTextStyle}">Difficulty</TextBlock>
+						<RadioButton GroupName="DifficultyARM" IsChecked="{Binding Scout, Mode=TwoWay}" Margin="10,10,0,0">Scout (easy)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+						<RadioButton GroupName="DifficultyARM" IsChecked="{Binding Advisor, Mode=TwoWay}" Margin="10,10,0,0">Advisor (moderate)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+						<RadioButton GroupName="DifficultyARM" IsChecked="{Binding Tactician, Mode=TwoWay}" Margin="10,10,0,0">Tactician (tough)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Tactician will think briefly at the start of the game to plan strategy, and may think on some turns.</TextBlock>
+						<RadioButton GroupName="DifficultyARM" IsChecked="{Binding Familiar, Mode=TwoWay}" Margin="10,10,0,0">Familiar (tougher)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Familiar will think for 30 seconds at the start of the game to plan strategy, and may think on some turns.</TextBlock>
+						<RadioButton GroupName="DifficultyARM" IsChecked="{Binding Golem, Mode=TwoWay}" Margin="10,10,0,0">Golem (toughest)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Golem will think for 1 minute at the start of the game to plan strategy, and may think on some turns.</TextBlock>
+					</StackPanel>
+					<StackPanel x:Name="X86Difficulty">
+						<TextBlock Style="{StaticResource GroupHeaderTextStyle}">Difficulty</TextBlock>
+						<RadioButton GroupName="DifficultyX86" IsChecked="{Binding Scout, Mode=TwoWay}" Margin="10,10,0,0">Scout (easiest)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+						<RadioButton GroupName="DifficultyX86" IsChecked="{Binding Advisor, Mode=TwoWay}" Margin="10,10,0,0">Advisor (moderate)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+						<RadioButton GroupName="DifficultyX86" IsChecked="{Binding Tactician, Mode=TwoWay}" Margin="10,10,0,0">Tactician (tough)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Plays instantly!</TextBlock>
+						<RadioButton GroupName="DifficultyX86" IsChecked="{Binding Witch, Mode=TwoWay}" Margin="10,10,0,0">Witch (tougher)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Witch will think for 30 seconds at the start of the game to plan strategy, and may think on some turns.</TextBlock>
+						<RadioButton GroupName="DifficultyX86" IsChecked="{Binding Goons, Mode=TwoWay}" Margin="10,10,0,0">Goons (toughest)</RadioButton>
+						<TextBlock Style="{StaticResource BasicTextStyle}" TextWrapping="Wrap" Margin="40,0,10,0">Goons will think for 1 minute at the start of the game to plan strategy, and may think on some turns.</TextBlock>
+					</StackPanel>
+					<StackPanel Name="SettingsPanel">
+						<TextBlock Style="{StaticResource GroupHeaderTextStyle}">Options</TextBlock>
+						<CheckBox Margin="10,10,0,0" Name="ShowPlayerScoreCheckBox" IsChecked="{Binding ShowPlayerScore, Mode=TwoWay}">Show player score</CheckBox>
+						<CheckBox Margin="10,10,0,0" IsChecked="{Binding UseRandomCardsFromChosenSetsOnly, Mode=TwoWay}">Use random cards (bane, black market) from chosen sets only</CheckBox>
+						<Grid Margin="10,10,0,0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<TextBlock Grid.Row="0" Grid.Column="0" Margin="12,0,10,0">Use Colonies:</TextBlock>
+							<ComboBox Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" ItemsSource="{Binding UseColoniesChoices}" SelectedItem="{Binding UseColonies, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+							<TextBlock Grid.Row="1" Grid.Column="0" Margin="12,4,10,0">Use Shelters:</TextBlock>
+							<ComboBox Grid.Row="1" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding UseSheltersChoices}" SelectedItem="{Binding UseShelters, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+							<TextBlock Grid.Row="2" Grid.Column="0" Margin="12,4,10,0">Starting Hands:</TextBlock>
+							<ComboBox Grid.Row="2" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding StartingHandTypeChoices}" SelectedItem="{Binding StartingHandType, Mode=TwoWay}" ItemTemplate="{StaticResource StartingHandTemplate}"></ComboBox>
+						</Grid>
+					</StackPanel>
+
+					<TextBlock Style="{StaticResource GroupHeaderTextStyle}">Card sets</TextBlock>
+					<ItemsControl x:Name="GameSetsList" ItemsSource="{Binding GameSets}" ItemTemplate="{StaticResource GameSetTemplate}"/>
+					<TextBlock  Style="{StaticResource BasicTextStyle}" Margin="20,0,20,0">Prohibited Cards</TextBlock>
+					<TextBox x:Name="ProhibitedCardsTextBox" Margin="10,0,10,0" Text="{Binding ProhibitedCardsString, Mode=TwoWay}"></TextBox>
+					
+					<TextBlock Style="{StaticResource GroupHeaderTextStyle}">Multiplayer</TextBlock>
+					<TextBlock>Online multiplayer is under development and may not be functional.</TextBlock>
+					<CheckBox Margin="10,10,0,0" Name="EnableMultiplayerCheckBox" IsChecked="{Binding HasEnabledMultiplayer, Mode=TwoWay}">Enable online multiplayer (beta)</CheckBox>
+					<TextBlock Margin="10,0,10,0" Style="{StaticResource BasicTextStyle}">User Name</TextBlock>
+					<TextBox x:Name="UserNameTextBox"  Margin="20,0,20,0" Width="200" HorizontalAlignment="Left" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
+					<TextBlock Margin="10,0,10,0" Style="{StaticResource BasicTextStyle}">Custom Server Address (used for debugging)</TextBlock>
+					<TextBox x:Name="ServerAddressTextBox" Margin="20,0,20,0" Text="{Binding ServerAddress, Mode=TwoWay}" Width="200" HorizontalAlignment="Left"></TextBox>
+				</StackPanel>
+			</ScrollViewer>
+		</Grid>
+			<!-- Back button and page title -->
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="120"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+				<TextBlock x:Name="pageTitle" Text="Settings" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+			</Grid>
+		</Grid>
+
+</Page>

@@ -1,0 +1,340 @@
+﻿<UserControl x:Class="DominionSL.MainPage" x:Name="MainControl1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:DominionSL"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls"
+	mc:Ignorable="d" xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows" 
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+	xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+	xmlns:System="clr-namespace:System;assembly=mscorlib" 
+	xmlns:im="clr-namespace:Microsoft.Expression.Interactivity.Media;assembly=Microsoft.Expression.Interactions" 
+	xmlns:il="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions" 
+	xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data" 
+    d:DesignHeight="1080" d:DesignWidth="1900">
+	<UserControl.Resources>
+		<local:EqualsConverter x:Key="EqualsConverter"/>
+		<local:NotEqualsConverter x:Key="NotEqualsConverter"/>
+		<local:ZeroToCollapsedConverter x:Key="ZeroToCollapsedConverter" />
+		<local:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+		<local:SizingHelper x:Key="SizingHelper" />		
+	</UserControl.Resources>
+
+	<Grid x:Name="LayoutRoot">		
+		<Grid x:Name="gamePageGrid" VerticalAlignment="Stretch" Background="{x:Null}" Margin="2,0">
+			<Grid.Resources>
+				<local:BoolToBrushConverter x:Name="SelectableToBorderBrushConverter" FalseValue="White" TrueValue="Yellow"/>
+				<local:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter" />
+				<local:IntToVisibilityConverter x:Name="IntToVisibilityConverter" />
+				<local:BoolToBrushConverter x:Name="BoolToBrushConverter" FalseValue="White" TrueValue="Green"/>
+				<local:CardTypeToBrushConverter x:Name="CardTypeToBrushConverter"/>
+				<ItemsPanelTemplate x:Key="PilePanelStackTemplate">
+					<VirtualizingStackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+				<ItemsPanelTemplate x:Key="PilePanelTemplate">
+					<StackPanel Orientation="Horizontal"/>
+				</ItemsPanelTemplate>
+				<DataTemplate x:Key="PlayerDetailsTemplate">
+					<StackPanel>
+						<TextBlock Text="{Binding Name}"/>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text=" Score: " Visibility="{Binding GameViewModel.ShowPlayerScoreInDetails, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text="{Binding Points}" Visibility="{Binding GameViewModel.ShowPlayerScoreInDetails, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text=" " Visibility="{Binding GameViewModel.ShowPlayerScoreInDetails, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text="VP:" Visibility="{Binding GameViewModel.GameHasVPChips, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text="{Binding VPChips}" Visibility="{Binding GameViewModel.GameHasVPChips, Converter={StaticResource BoolToVisibilityConverter}}"/>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text=" H: "/>
+							<TextBlock Text="{Binding Hand.Count}"/>
+							<TextBlock Text=" D: "/>
+							<TextBlock Text="{Binding Deck.Count}"/>
+							<TextBlock Text=" C: " Visibility="{Binding GameViewModel.GameHasCoinTokens, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text="{Binding CoinTokens}" Visibility="{Binding GameViewModel.GameHasCoinTokens, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text=" P: " Visibility="{Binding GameViewModel.GameHasPirateShip, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<TextBlock Text="{Binding PirateShipTreasureTokens}" Visibility="{Binding GameViewModel.GameHasPirateShip, Converter={StaticResource BoolToVisibilityConverter}}"/>
+						</StackPanel>
+					</StackPanel>
+				</DataTemplate>
+				<DataTemplate x:Key="PileTemplate">
+					<Border Margin="2" BorderThickness="2" 
+							BorderBrush="{Binding CardType, Converter={StaticResource CardTypeToBrushConverter}}"
+							>
+						<!--BorderBrush="{Binding IsSelectable, Converter={StaticResource SelectableToBorderBrushConverter}}"-->
+						<Grid Background="Transparent" MouseLeftButtonDown="Pile_Tap">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="128*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="18*"/>
+								<RowDefinition Height="84*"/>
+								<RowDefinition Height="18*"/>
+							</Grid.RowDefinitions>
+							<Border Margin="-2,0,-2,0" Grid.Row="1" Grid.ColumnSpan="3" BorderBrush="{Binding CardType, Converter={StaticResource CardTypeToBrushConverter}}" BorderThickness="2">
+								<Rectangle Width="{Binding CardWidth,Source={StaticResource SizingHelper}}" Height="{Binding CardHeight,Source={StaticResource SizingHelper}}" >
+									<Rectangle.Fill>
+										<ImageBrush ImageSource="{Binding TopCard.Image}" Stretch="UniformToFill"></ImageBrush>
+									</Rectangle.Fill>
+								</Rectangle>
+							</Border>
+							<!--<TextBlock Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding Card.CardInfo.Text}" TextWrapping="WrapWholeWords"></TextBlock>-->
+							<StackPanel Grid.Row="1" Orientation="Horizontal" Background="Black" HorizontalAlignment="Left" Grid.ColumnSpan="3" VerticalAlignment="Top">
+								<TextBlock Text="E: " Visibility="{Binding EmbargoCount, Converter={StaticResource IntToVisibilityConverter}}"/>
+								<TextBlock Text="{Binding EmbargoCount}" Visibility="{Binding EmbargoCount, Converter={StaticResource IntToVisibilityConverter}}"/>
+								<TextBlock Text="B" Margin="2,0,0,0" Visibility="{Binding IsBanePile, Converter={StaticResource BoolToVisibilityConverter}}"/>
+								<TextBlock Text="T" Margin="2,0,0,0" Visibility="{Binding TradeRouteCount, Converter={StaticResource IntToVisibilityConverter}}"/>
+							</StackPanel>
+							<TextBlock Grid.Row="2" Text="{Binding Count}" Margin="2,0,2,0"/>
+							<TextBlock Grid.ColumnSpan="3" Grid.Row="0" HorizontalAlignment="Center" Text="{Binding Name}" Margin="2,0,2,0"/>
+							<StackPanel Grid.ColumnSpan="3" Grid.Row="2" Orientation="Horizontal" Margin="2,0,2,0" HorizontalAlignment="Right">
+								<TextBlock Text="$"/>
+								<TextBlock Text="{Binding Cost}"/>
+								<TextBlock Text="℗" Visibility="{Binding CostsPotion, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							</StackPanel>
+						</Grid>
+					</Border>
+				</DataTemplate>
+				<DataTemplate x:Key="CardTemplate">
+					<Border Margin="2" BorderThickness="2" BorderBrush="{Binding CardType, Converter={StaticResource CardTypeToBrushConverter}}">
+						<Grid MouseLeftButtonDown="Card_Tap" Background="Transparent">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="18*"/>
+								<RowDefinition Height="84*"/>
+							</Grid.RowDefinitions>
+							<Rectangle Width="{Binding CardWidth,Source={StaticResource SizingHelper}}" Height="{Binding CardHeight,Source={StaticResource SizingHelper}}" Grid.Row="1">
+								<Rectangle.Fill>
+									<ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill"></ImageBrush>
+								</Rectangle.Fill>
+							</Rectangle>
+							<TextBlock Grid.Row="0" Text="{Binding Name}" IsHitTestVisible="False" HorizontalAlignment="Center"/>
+							<TextBlock Grid.Row="0" HorizontalAlignment="Right" Text="x" IsHitTestVisible="False" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"/>
+							<Border Background="Black" Grid.Row="0" HorizontalAlignment="Right" IsHitTestVisible="False" Visibility="{Binding ShowOrder, Converter={StaticResource BoolToVisibilityConverter}}">
+								<TextBlock Text="{Binding Order}"/>
+							</Border>
+						</Grid>
+					</Border>
+				</DataTemplate>
+				<DataTemplate x:Key="EffectTemplate">
+					<Border Background="Transparent" MouseLeftButtonDown="Effect_Tap" Width="160" Height="120" BorderBrush="White" BorderThickness="2">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="140"/>
+								<ColumnDefinition Width="20"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Text="{Binding ChoiceDescription}" TextWrapping="Wrap" IsHitTestVisible="False"/>
+							<TextBlock Grid.Column="1" Text="x" IsHitTestVisible="False" Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibilityConverter}}"/>
+						</Grid>
+					</Border>
+				</DataTemplate>
+				<DataTemplate x:Key="LogTextBlockTemplate">
+					<TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+				</DataTemplate>
+				<DataTemplate x:Key="LogTurnTemplate">
+					<ItemsControl ItemsSource="{Binding Lines}" ItemTemplate="{StaticResource LogTextBlockTemplate}"/>
+				</DataTemplate>
+			</Grid.Resources>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="120*"/>
+				<RowDefinition Height="120*"/>
+				<RowDefinition Height="120*"/>
+				<RowDefinition Height="120*"/>
+				<RowDefinition Height="120*"/>
+				<RowDefinition Height="120*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+			</Grid.ColumnDefinitions>
+			<ItemsControl Grid.Row="0" x:Name="Treasure" HorizontalAlignment="Left" VerticalAlignment="Stretch" ItemsSource="{Binding GameViewModel.BasicTreasurePiles}" ItemTemplate="{StaticResource PileTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+			<ItemsControl Grid.Row="0" Grid.Column="1" x:Name="Victory" HorizontalAlignment="Left" VerticalAlignment="Stretch" ItemsSource="{Binding GameViewModel.BasicVictoryPiles}" ItemTemplate="{StaticResource PileTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+			<ItemsControl Grid.Row="1" Grid.ColumnSpan="2" x:Name="Kingdom1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding GameViewModel.KingdomPiles1}" ItemTemplate="{StaticResource PileTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+			<ItemsControl Grid.Row="2" Grid.ColumnSpan="2" x:Name="Kingdom2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding GameViewModel.KingdomPiles2}" ItemTemplate="{StaticResource PileTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+
+			<ScrollViewer x:Name="CardScrollViewer" Margin="0,0,-400,0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="3" Grid.RowSpan="3" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="100"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+
+					<TextBlock Grid.Row="11">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Hand</TextBlock>
+					<ScrollViewer Grid.Row="11" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}" Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+						<ItemsControl x:Name="Hand" ItemsSource="{Binding PlayerViewModel.Hand}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="10">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Play</TextBlock>
+					<ScrollViewer Grid.Row="10" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+						<ItemsControl x:Name="Play" ItemsSource="{Binding PlayerViewModel.Played}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="9" Visibility="{Binding ShowPossessedPlayerHand, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>PossHand</TextBlock>
+					<ScrollViewer Grid.Row="9" Grid.Column="1"  Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}" Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowPossessedPlayerHand, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="PossHand" ItemsSource="{Binding PossessedPlayerViewModel.Hand}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="8" Visibility="{Binding ShowPossessedPlayerHand, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>PossPlay</TextBlock>
+					<ScrollViewer Grid.Row="8" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}" Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowPossessedPlayerHand, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="PossPlay" ItemsSource="{Binding PossessedPlayerViewModel.Played}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="7" Visibility="{Binding ShowEffectChoice, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Choice</TextBlock>
+					<ScrollViewer Grid.Row="7" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowEffectChoice, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="EffectChoice" ItemsSource="{Binding EffectChoice}" ItemTemplate="{StaticResource EffectTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="6" Visibility="{Binding ShowCardChoice, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Choice</TextBlock>
+					<ScrollViewer Grid.Row="6" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowCardChoice, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="CardChoice" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding CardChoice}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}" />
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="5" Visibility="{Binding ShowCleanup, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Cleanup</TextBlock>
+					<ScrollViewer Grid.Row="5" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowCleanup, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="Cleanup" ItemsSource="{Binding PlayerViewModel.Cleanup}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}" />
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="4" Visibility="{Binding ShowPossessedPlayerCleanup, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>PossCleanup</TextBlock>
+					<ScrollViewer Grid.Row="4" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowPossessedPlayerCleanup, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="PossCleanup" ItemsSource="{Binding PossessedPlayerViewModel.Cleanup}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}" />
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="3" Visibility="{Binding ShowIsland, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Island</TextBlock>
+					<ScrollViewer Grid.Row="3" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowIsland, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="Island" ItemsSource="{Binding PlayerViewModel.Island}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="2" Visibility="{Binding ShowNativeVillage, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Native Village</TextBlock>
+					<ScrollViewer Grid.Row="2" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}" Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowNativeVillage, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="NativeVillage" ItemsSource="{Binding PlayerViewModel.NativeVillage}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="1" Visibility="{Binding ShowPossessedPlayerNativeVillage, Converter={StaticResource BoolToVisibilityConverter}}">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Poss Native Village</TextBlock>
+					<ScrollViewer Grid.Row="1" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" Visibility="{Binding ShowPossessedPlayerNativeVillage, Converter={StaticResource BoolToVisibilityConverter}}">
+						<ItemsControl x:Name="PossNativeVillage" ItemsSource="{Binding PossessedPlayerViewModel.NativeVillage}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+
+					<TextBlock Grid.Row="0">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<TranslateTransform Y="-20"/>
+								<RotateTransform Angle="90"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>Trash</TextBlock>
+					<ScrollViewer Grid.Row="0" Grid.Column="1" Height="{Binding CardRowHeight,Source={StaticResource SizingHelper}}"  Margin="-76,0,0,0" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+						<ItemsControl x:Name="Trash" ItemsSource="{Binding GameViewModel.Trash}" ItemTemplate="{StaticResource CardTemplate}" ItemsPanel="{StaticResource PilePanelStackTemplate}"/>
+					</ScrollViewer>
+				</Grid>
+			</ScrollViewer>
+
+			<StackPanel x:Name="PlayerDetails" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+				<Button Name="OKButton" FontSize="20" Height="80" Click="OK_Click" Visibility="{Binding ShowOkButton, Converter={StaticResource BoolToVisibilityConverter}}" IsEnabled="{Binding IsMakeChoiceEnabled}">OK</Button>
+				<Button Name="PlayAllButton" FontSize="20" Height="80" Click="PlayAll_Click" Visibility="{Binding ShowPlayAllButton, Converter={StaticResource BoolToVisibilityConverter}}">Play All</Button>
+				<Button Name="PlayCoinTokensButton" FontSize="20" Height="80" Click="PlayCoins_Click" Visibility="{Binding ShowPlayCoinButton, Converter={StaticResource BoolToVisibilityConverter}}">Play Coins</Button>
+				<Button Name="BuyPhaseButton" FontSize="20" Height="80" Click="BuyPhase_Click" Visibility="{Binding ShowBuyPhaseButton, Converter={StaticResource BoolToVisibilityConverter}}">Buy Phase</Button>
+				<Button Name="EndTurnButton" FontSize="20" Height="80" Click="EndTurn_Click" Visibility="{Binding ShowEndTurnButton, Converter={StaticResource BoolToVisibilityConverter}}">End Turn</Button>
+				<Button Name="ExitButton" FontSize="20" Height="80" Click="Exit_Click" Visibility="{Binding ShowExitButton, Converter={StaticResource BoolToVisibilityConverter}}">Exit</Button>
+			</StackPanel>
+			<TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" x:Name="StatusText" Text="{Binding StatusText}"></TextBlock>
+			<Grid x:Name="Log" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="400,0,0,0">
+				<ScrollViewer x:Name="LogScrollViewer" Margin="0,0,0,0">
+					<ItemsControl ItemsSource="{Binding GameViewModel.TextLog.Turns}" ItemTemplate="{StaticResource LogTurnTemplate}"/>
+				</ScrollViewer>
+			</Grid>
+
+			<StackPanel Grid.Row="5" Grid.Column="1" Margin="400,0,0,0" VerticalAlignment="Bottom">
+				<ItemsControl ItemsSource="{Binding GameViewModel.Players}" ItemTemplate="{StaticResource PlayerDetailsTemplate}"/>
+				<StackPanel x:Name="Details" HorizontalAlignment="Stretch" Orientation="Horizontal">
+					<TextBlock TextWrapping="Wrap" Text="Actions: "/>
+					<TextBlock TextWrapping="Wrap" Text="{Binding GameViewModel.CurrentPlayer.Actions}"/>
+					<TextBlock TextWrapping="Wrap" Text="Buys: " Margin="20,0,0,0"/>
+					<TextBlock TextWrapping="Wrap" Text="{Binding GameViewModel.CurrentPlayer.Buys}"/>
+					<TextBlock TextWrapping="Wrap" Text="Coins: " Margin="20,0,0,0"/>
+					<TextBlock TextWrapping="Wrap" Text="{Binding GameViewModel.CurrentPlayer.Coin}"/>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+		
+		<local:GameLobby x:Name="MultiplayerGameLobby" Height="800" Width="800" Visibility="Collapsed"/>
+	</Grid>
+</UserControl>

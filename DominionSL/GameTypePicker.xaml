@@ -1,0 +1,24 @@
+﻿<sdk:ChildWindow xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"	x:Class="DominionSL.GameTypePicker"
+	Title="Game Type"
+	Width="400" Height="300">
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" Margin="0,0,79,0" HorizontalAlignment="Right" Grid.Row="1" />
+		<Button x:Name="CancelButton" Content="Cancel" Click="CancelButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Grid.Row="1" />
+		<StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+			<RadioButton x:Name="ServerRadioButton" Content="Server Game" d:LayoutOverrides="Width" GroupName="Game" IsChecked="True"/>
+			<RadioButton x:Name="LocalRadioButton" Content="Local Game" d:LayoutOverrides="Width" GroupName="Game"/>
+		</StackPanel>
+		<TextBlock TextWrapping="Wrap" Text="Server Address" HorizontalAlignment="Left" Margin="2,69,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+		<TextBox x:Name="AddressTextBox" TextWrapping="Wrap" Text="localhost" Margin="90,65,168,0" VerticalAlignment="Top"/>
+
+		<TextBlock TextWrapping="Wrap" Text="username" HorizontalAlignment="Left" Margin="2,169,0,0" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+		<TextBox x:Name="UsernameTextBox" TextWrapping="Wrap" Text="localhost" Margin="90,165,168,0" VerticalAlignment="Top"/>
+	</Grid>
+</sdk:ChildWindow>
