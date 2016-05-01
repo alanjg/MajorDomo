@@ -12,14 +12,6 @@ using Dominion.Network;
 
 namespace DominionPhone
 {
-	public abstract class Game
-	{
-		public GamePageModel GamePageModel { get; protected set; }
-		public abstract void PlayGame();
-		public abstract void ExitGame();
-		public abstract void CancelGame();
-	}
-
 	public class LocalGame : Game
 	{
 		private Thread gameThread;

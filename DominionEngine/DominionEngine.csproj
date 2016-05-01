@@ -429,6 +429,7 @@
     <Compile Include="ViewModel\CollectionSynchronizer.cs" />
     <Compile Include="ViewModel\DeckViewModel.cs" />
     <Compile Include="ViewModel\EffectViewModel.cs" />
+    <Compile Include="ViewModel\Game.cs" />
     <Compile Include="ViewModel\GamePageModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
     <Compile Include="ViewModel\IDisplayable.cs" />
