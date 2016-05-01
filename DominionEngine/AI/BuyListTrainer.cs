@@ -51,8 +51,10 @@ namespace DominionEngine.AI
 #if JUPITER
 		private ManualResetEvent signal;
 		private Windows.Foundation.IAsyncAction thread;
+#elif PCL
+
 #else
-		private Thread thread;
+        private Thread thread;
 #endif
 		private Kingdom kingdom;
 		private int[] leaderWins;
@@ -76,8 +78,10 @@ namespace DominionEngine.AI
 			this.challengerGames = new int[count];
 #if JUPITER
 			this.signal = new ManualResetEvent(false);
+#elif PCL
+            
 #else
-			this.thread = new Thread(this.workerStart);
+            this.thread = new Thread(this.workerStart);
 #endif
 		}
 
@@ -86,8 +90,10 @@ namespace DominionEngine.AI
 #if JUPITER
 			this.thread = Windows.System.Threading.ThreadPool.RunAsync(new Windows.System.Threading.WorkItemHandler(this.workerStart));
 			this.thread.Completed = new Windows.Foundation.AsyncActionCompletedHandler(completed);
+#elif PCL
+            this.workerStart();
 #else
-			this.thread.Start();
+            this.thread.Start();
 #endif
 		}
 
@@ -102,8 +108,10 @@ namespace DominionEngine.AI
 		{
 #if JUPITER
 			this.signal.WaitOne();
+#elif PCL
+
 #else
-			this.thread.Join();
+            this.thread.Join();
 #endif
 		}
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23023.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DominionEngine", "DominionEngine\DominionEngine.csproj", "{5713DEE5-890B-4A02-AF5F-B02A1798AEB7}"
 EndProject
@@ -428,68 +428,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 20
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://alanjg.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DominionEngine\\DominionEngine.csproj
-		SccProjectName1 = DominionEngine
-		SccLocalPath1 = DominionEngine
-		SccProjectUniqueName2 = DominionEngineSL\\DominionEngineSL.csproj
-		SccProjectName2 = DominionEngineSL
-		SccLocalPath2 = DominionEngineSL
-		SccProjectUniqueName3 = DominionServer\\DominionServer.csproj
-		SccProjectName3 = DominionServer
-		SccLocalPath3 = DominionServer
-		SccProjectUniqueName4 = DominionSL.Web\\DominionSL.Web.csproj
-		SccProjectName4 = DominionSL.Web
-		SccLocalPath4 = DominionSL.Web
-		SccProjectUniqueName5 = DominionSL\\DominionSL.csproj
-		SccProjectName5 = DominionSL
-		SccLocalPath5 = DominionSL
-		SccProjectUniqueName6 = TestClient\\TestClient.csproj
-		SccProjectName6 = TestClient
-		SccLocalPath6 = TestClient
-		SccProjectUniqueName7 = WpfClient\\WpfClient.csproj
-		SccProjectName7 = WpfClient
-		SccLocalPath7 = WpfClient
-		SccProjectUniqueName8 = DominionPhone\\DominionPhone.csproj
-		SccProjectName8 = DominionPhone
-		SccLocalPath8 = DominionPhone
-		SccProjectUniqueName9 = DominionEnginePhone\\DominionEnginePhone.csproj
-		SccProjectName9 = DominionEnginePhone
-		SccLocalPath9 = DominionEnginePhone
-		SccProjectUniqueName10 = DominionJupiter\\DominionJupiter.csproj
-		SccProjectName10 = DominionJupiter
-		SccLocalPath10 = DominionJupiter
-		SccProjectUniqueName11 = DominionEngineJupiter\\DominionEngineJupiter.csproj
-		SccProjectName11 = DominionEngineJupiter
-		SccLocalPath11 = DominionEngineJupiter
-		SccProjectUniqueName12 = SilverlightPolicyServer\\SilverlightPolicyServer.csproj
-		SccProjectName12 = SilverlightPolicyServer
-		SccLocalPath12 = SilverlightPolicyServer
-		SccProjectUniqueName13 = Tests\\Tests.csproj
-		SccProjectName13 = Tests
-		SccLocalPath13 = Tests
-		SccProjectUniqueName14 = DominionPhone81\\DominionPhone81.csproj
-		SccProjectName14 = DominionPhone81
-		SccLocalPath14 = DominionPhone81
-		SccProjectUniqueName15 = DominionJupiterLibrary\\DominionJupiterLibrary.csproj
-		SccProjectName15 = DominionJupiterLibrary
-		SccLocalPath15 = DominionJupiterLibrary
-		SccProjectUniqueName16 = DominionJupiterUniversalEngine81\\DominionJupiterUniversalEngine81.csproj
-		SccProjectName16 = DominionJupiterUniversalEngine81
-		SccLocalPath16 = DominionJupiterUniversalEngine81
-		SccProjectUniqueName17 = DominionEngineUWP\\DominionEngineUWP.csproj
-		SccProjectName17 = DominionEngineUWP
-		SccLocalPath17 = DominionEngineUWP
-		SccProjectUniqueName18 = DominionUWP\\DominionUWP.csproj
-		SccProjectName18 = DominionUWP
-		SccLocalPath18 = DominionUWP
-		SccProjectUniqueName19 = DominionUWPLibrary\\DominionUWPLibrary.csproj
-		SccProjectName19 = DominionUWPLibrary
-		SccLocalPath19 = DominionUWPLibrary
 	EndGlobalSection
 EndGlobal

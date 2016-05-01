@@ -24,15 +24,19 @@ namespace Dominion
 				{
 					Type type = typeInfo.AsType();
 					if (typeof(CardModel).GetTypeInfo().IsAssignableFrom(typeInfo) && !typeInfo.IsAbstract)
-				
+#elif PCL
+                foreach (TypeInfo typeInfo in typeof(CardModelFactory).GetTypeInfo().Assembly.DefinedTypes)
+                {
+                    Type type = typeInfo.AsType();
+                    if (typeof(CardModel).GetTypeInfo().IsAssignableFrom(typeInfo) && !typeInfo.IsAbstract)
 #else
 				foreach (Type type in typeof(CardModelFactory).Assembly.GetTypes())
 				{
 					if (typeof(CardModel).IsAssignableFrom(type) && !type.IsAbstract)
 #endif
 
-					{
-						try
+                    {
+                    try
 						{
 							CardModel card = (CardModel)Activator.CreateInstance(type);
 							nameLookup[card.Name] = type;

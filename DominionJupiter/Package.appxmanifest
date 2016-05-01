@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="29702AlanGasperini.MajorDomo" Publisher="CN=38977463-074A-4416-91D7-9030B3F6C8AC" Version="1.4.0.7" />
+  <Identity Name="29702AlanGasperini.MajorDomo" Publisher="CN=38977463-074A-4416-91D7-9030B3F6C8AC" Version="1.4.0.9" />
   <Properties>
     <DisplayName>MajorDomo</DisplayName>
     <PublisherDisplayName>Alan Gasperini</PublisherDisplayName>

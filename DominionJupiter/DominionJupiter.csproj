@@ -22,7 +22,7 @@
     <TargetFrameworkVersion />
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>7D441D638F08CFB6A46552BED828C42DB45594DD</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>0A3DE37A7B15FD96E4CB897A876B863234301BD6</PackageCertificateThumbprint>
     <AppxBundle>Never</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

@@ -375,8 +375,10 @@ namespace DominionEngine.AI
 #if JUPITER
 			private ManualResetEvent signal;
 			private Windows.Foundation.IAsyncAction thread;
+#elif PCL
+
 #else
-			private Thread thread;
+            private Thread thread;
 #endif
 
 			public TreeSearchWorker(DominionTreeNode root, int nodes)
@@ -385,8 +387,10 @@ namespace DominionEngine.AI
 				this.nodes = nodes;
 #if JUPITER
 				this.signal = new ManualResetEvent(false);
+#elif PCL
+                this.workerStart();
 #else
-				this.thread = new Thread(this.workerStart);
+                this.thread = new Thread(this.workerStart);
 #endif
 			}
 
@@ -395,10 +399,12 @@ namespace DominionEngine.AI
 #if JUPITER
 				this.thread = Windows.System.Threading.ThreadPool.RunAsync(new Windows.System.Threading.WorkItemHandler(this.workerStart));
 				this.thread.Completed = new Windows.Foundation.AsyncActionCompletedHandler(completed);
+#elif PCL
+
 #else
 				this.thread.Start();
 #endif
-			}
+            }
 
 #if JUPITER
 			private void completed(Windows.Foundation.IAsyncAction action, Windows.Foundation.AsyncStatus status)
@@ -407,19 +413,21 @@ namespace DominionEngine.AI
 			}
 #endif
 
-			public void Wait()
+            public void Wait()
 			{
 #if JUPITER
 			this.signal.WaitOne();
+#elif PCL
+
 #else
 				this.thread.Join();
 #endif
-			}
+            }
 
 #if JUPITER
 			private void workerStart(Windows.Foundation.IAsyncAction action)
 #else
-			private void workerStart()
+            private void workerStart()
 #endif
 			{
 				for (int i = 0; i < this.nodes; i++)
