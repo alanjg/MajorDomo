@@ -1,0 +1,29 @@
+﻿<Properties StartupItem="iOS/DominionXamarin.iOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone6s.9.2" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DominionXamarinForms/GamePage.xaml.cs">
+    <Files>
+      <File FileName="DominionXamarinForms/GamePage.xaml.cs" Line="94" Column="5" />
+      <File FileName="DominionXamarinForms/GamePage.xaml" Line="1" Column="1" />
+      <File FileName="DominionXamarinForms/Application.cs" Line="1" Column="1" />
+      <File FileName="DominionXamarinForms/Game.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/ViewModel/GamePageModel.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/ViewModel/GameViewModel.cs" Line="1" Column="1" />
+      <File FileName="DominionXamarinForms/UICollectionSynchronizer.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/ViewModel/PlayerViewModel.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/Model/GameModel.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/Model/Player.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/ViewModel/ViewModelDispatcher.cs" Line="1" Column="1" />
+      <File FileName="iOS/ThreadHelper.cs" Line="1" Column="1" />
+      <File FileName="iOS/Main.cs" Line="1" Column="1" />
+      <File FileName="Droid/MainActivity.cs" Line="1" Column="1" />
+      <File FileName="DominionEngine/ViewModel/LogViewModel.cs" Line="1" Column="1" />
+      <File FileName="DominionXamarinForms/MainPage.xaml.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Catchpoint exceptionName="System.Exception" includeSubclasses="True" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

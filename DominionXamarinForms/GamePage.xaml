@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DominionXamarinForms.GamePage"
+xmlns:local="clr-namespace:DominionXamarinForms"
+    >
+	<ContentPage.Content>
+	 <Grid x:Name="LayoutRoot">
+		<Grid.Resources>
+			<ResourceDictionary>
+				
+			</ResourceDictionary>
+		</Grid.Resources>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="64*"/>
+			<ColumnDefinition Width="105*"/>
+			<ColumnDefinition Width="71*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="2*"/>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="5*"/>
+			<RowDefinition Height="20"/>
+		</Grid.RowDefinitions>
+		<StackLayout Grid.ColumnSpan="3">
+			<StackLayout Orientation="Horizontal" x:Name="Treasure" HorizontalOptions="Start" VerticalOptions="Fill" />
+			<StackLayout Orientation="Horizontal" x:Name="Victory" HorizontalOptions="Start" VerticalOptions="Fill" />
+			<StackLayout Orientation="Horizontal" x:Name="Kingdom1" HorizontalOptions="Start" VerticalOptions="Fill" />
+			<StackLayout Orientation="Horizontal" x:Name="Kingdom2" HorizontalOptions="Start" VerticalOptions="Fill" />
+			<StackLayout Orientation="Horizontal" x:Name="Kingdom3" HorizontalOptions="Start" VerticalOptions="Fill" />
+		</StackLayout>		
+		<ScrollView Grid.Row="1" Grid.ColumnSpan="3" x:Name="LogScrollViewer">
+			<StackLayout x:Name="TextLog" />
+		</ScrollView>
+
+		<ScrollView HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="100"/>
+				</Grid.ColumnDefinitions>
+
+				<Label>Hand</Label>
+				<ScrollView Grid.Row="1" Grid.Column="0" Orientation="Vertical">
+					<StackLayout x:Name="Hand"/>
+				</ScrollView>
+
+				<Label Grid.Column="1">Played</Label>
+				<ScrollView Grid.Row="1" Grid.Column="1">
+					<StackLayout x:Name="Played"/>
+				</ScrollView>
+
+				<Label Grid.Column="2">PossHand</Label>
+				<ScrollView Grid.Row="1" Grid.Column="2">
+					<StackLayout x:Name="PossHand"/>
+				</ScrollView>
+
+				<Label Grid.Column="3">PossPlay</Label>
+				<ScrollView Grid.Row="1" Grid.Column="3">
+					<StackLayout x:Name="PossPlay"/>
+				</ScrollView>
+
+				<Label Grid.Column="4">Choice</Label>
+				<ScrollView Grid.Row="1" Grid.Column="4">
+					<StackLayout x:Name="CardChoice"/>
+				</ScrollView>
+
+				<Label Grid.Column="5">Choice</Label>
+				<ScrollView Grid.Row="1" Grid.Column="5">
+					<StackLayout x:Name="EffectChoice"/>
+				</ScrollView>
+
+				<Label Grid.Column="6">Cleanup</Label>
+				<ScrollView Grid.Row="1" Grid.Column="6">
+					<StackLayout x:Name="Cleanup"/>
+				</ScrollView>
+
+				<Label Grid.Column="7">PossClean</Label>
+				<ScrollView Grid.Row="1" Grid.Column="7">
+					<StackLayout x:Name="PossClean"/>
+				</ScrollView>
+
+				<Label Grid.Column="8">Island</Label>
+				<ScrollView Grid.Row="1" Grid.Column="8">
+					<StackLayout x:Name="Island"/>
+				</ScrollView>
+
+				<Label Grid.Column="9">Nat Vil</Label>
+				<ScrollView Grid.Row="1" Grid.Column="9">
+					<StackLayout x:Name="NativeVillage"/>
+				</ScrollView>
+
+				<Label Grid.Column="10">PossNV</Label>
+				<ScrollView Grid.Row="1" Grid.Column="10">
+					<StackLayout x:Name="PossNV"/>
+				</ScrollView>
+
+				<Label Grid.Column="11">Trash</Label>
+				<ScrollView Grid.Row="1" Grid.Column="11">
+					<StackLayout x:Name="Trash"/>
+				</ScrollView>
+			</Grid>
+		</ScrollView>
+
+		<StackLayout x:Name="PlayerDetails" Grid.Row="3" Grid.Column="2" VerticalOptions="Fill" HorizontalOptions="Fill" Orientation="Vertical">
+			<Button x:Name="OKButton" FontSize="20" Clicked="OK_Click" IsVisible="{Binding ShowOkButton}" IsEnabled="{Binding IsMakeChoiceEnabled}" Text="OK" />
+			<Button x:Name="PlayAllButton" FontSize="20"  Clicked="PlayAll_Click" IsVisible="{Binding ShowPlayAllButton}" Text="Play All" />
+			<Button x:Name="PlayCoinTokensButton" FontSize="20"  Clicked="PlayCoins_Click" IsVisible="{Binding ShowPlayCoinButton}" Text="Play Coins" />
+			<Button x:Name="BuyPhaseButton" FontSize="20"  Clicked="BuyPhase_Click" IsVisible="{Binding ShowBuyPhaseButton}" Text="Buy Phase" />
+			<Button x:Name="EndTurnButton" FontSize="20" Clicked="EndTurn_Click" IsVisible="{Binding ShowEndTurnButton}" Text="End Turn" />
+			<Button x:Name="ExitButton" FontSize="20"  Clicked="Exit_Click" IsVisible="{Binding ShowExitButton}" Text="Exit" />
+		</StackLayout>
+
+	</Grid>
+	</ContentPage.Content>
+</ContentPage>

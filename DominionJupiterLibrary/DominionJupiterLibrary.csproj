@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
@@ -40,7 +40,7 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <ProjectReference Include="..\DominionJupiterUniversalEngine81\DominionJupiterUniversalEngine81.csproj">
-      <Project>{5a63d433-e137-4eee-9b6d-b34c98d58464}</Project>
+      <Project>{5A63D433-E137-4EEE-9B6D-B34C98D58464}</Project>
       <Name>DominionJupiterUniversalEngine81</Name>
     </ProjectReference>
   </ItemGroup>

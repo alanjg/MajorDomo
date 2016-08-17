@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DominionEngine\DominionEngine.csproj">
-      <Project>{5713dee5-890b-4a02-af5f-b02a1798aeb7}</Project>
+      <Project>{5713DEE5-890B-4A02-AF5F-B02A1798AEB7}</Project>
       <Name>DominionEngine</Name>
     </ProjectReference>
   </ItemGroup>
