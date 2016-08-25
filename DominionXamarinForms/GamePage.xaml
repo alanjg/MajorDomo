@@ -6,7 +6,11 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 	 <Grid x:Name="LayoutRoot">
 		<Grid.Resources>
 			<ResourceDictionary>
-				
+				<local:BoolToSizeConverter x:Key="ShowCardConverter" TrueValue="80" FalseValue="0"/>
+        <Style TargetType="Button">
+          <Setter Property="FontSize" Value="8"/>
+          <Setter Property="Margin" Value="0"/>
+        </Style>
 			</ResourceDictionary>
 		</Grid.Resources>
 		<Grid.ColumnDefinitions>
@@ -33,24 +37,24 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 		</ScrollView>
 
 		<ScrollView HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-			<Grid>
+			<Grid x:Name="CardGrid">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
-					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="70"/>
+					<ColumnDefinition Width="70"/>
+					<ColumnDefinition Width="{Binding ShowPossessedPlayerHand, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowPossessedPlayerHand, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowCardChoice, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowEffectChoice, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowCleanup, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowPossessedPlayerCleanup, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowIsland, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowNativeVillage, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="{Binding ShowPossessedPlayerNativeVillage, Converter={StaticResource ShowCardConverter}}"/>
+					<ColumnDefinition Width="70"/>
 				</Grid.ColumnDefinitions>
 
 				<Label>Hand</Label>
@@ -63,48 +67,48 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 					<StackLayout x:Name="Played"/>
 				</ScrollView>
 
-				<Label Grid.Column="2">PossHand</Label>
-				<ScrollView Grid.Row="1" Grid.Column="2">
+				<Label Grid.Column="2" IsVisible="{Binding ShowPossessedPlayerHand}">PossHand</Label>
+				<ScrollView Grid.Row="1" Grid.Column="2" IsVisible="{Binding ShowPossessedPlayerHand}">
 					<StackLayout x:Name="PossHand"/>
 				</ScrollView>
 
-				<Label Grid.Column="3">PossPlay</Label>
-				<ScrollView Grid.Row="1" Grid.Column="3">
+				<Label Grid.Column="3" IsVisible="{Binding ShowPossessedPlayerHand}">PossPlay</Label>
+				<ScrollView Grid.Row="1" Grid.Column="3" IsVisible="{Binding ShowPossessedPlayerHand}">
 					<StackLayout x:Name="PossPlay"/>
 				</ScrollView>
 
-				<Label Grid.Column="4">Choice</Label>
-				<ScrollView Grid.Row="1" Grid.Column="4">
+				<Label Grid.Column="4" IsVisible="{Binding ShowCardChoice}">Choice</Label>
+				<ScrollView Grid.Row="1" Grid.Column="4"  IsVisible="{Binding ShowCardChoice}">
 					<StackLayout x:Name="CardChoice"/>
 				</ScrollView>
 
-				<Label Grid.Column="5">Choice</Label>
-				<ScrollView Grid.Row="1" Grid.Column="5">
+				<Label Grid.Column="5" IsVisible="{Binding ShowEffectChoice}">Choice</Label>
+				<ScrollView Grid.Row="1" Grid.Column="5" IsVisible="{Binding ShowEffectChoice}">
 					<StackLayout x:Name="EffectChoice"/>
 				</ScrollView>
 
-				<Label Grid.Column="6">Cleanup</Label>
-				<ScrollView Grid.Row="1" Grid.Column="6">
+				<Label Grid.Column="6" IsVisible="{Binding ShowCleanup}">Cleanup</Label>
+				<ScrollView Grid.Row="1" Grid.Column="6" IsVisible="{Binding ShowCleanup}">
 					<StackLayout x:Name="Cleanup"/>
 				</ScrollView>
 
-				<Label Grid.Column="7">PossClean</Label>
-				<ScrollView Grid.Row="1" Grid.Column="7">
+				<Label Grid.Column="7" IsVisible="{Binding ShowPossessedPlayerCleanup}">PossClean</Label>
+				<ScrollView Grid.Row="1" Grid.Column="7" IsVisible="{Binding ShowPossessedPlayerCleanup}">
 					<StackLayout x:Name="PossClean"/>
 				</ScrollView>
 
-				<Label Grid.Column="8">Island</Label>
-				<ScrollView Grid.Row="1" Grid.Column="8">
+				<Label Grid.Column="8" IsVisible="{Binding ShowIsland}">Island</Label>
+				<ScrollView Grid.Row="1" Grid.Column="8" IsVisible="{Binding ShowIsland}">
 					<StackLayout x:Name="Island"/>
 				</ScrollView>
 
-				<Label Grid.Column="9">Nat Vil</Label>
-				<ScrollView Grid.Row="1" Grid.Column="9">
+				<Label Grid.Column="9" IsVisible="{Binding ShowNativeVillage}">Nat Vil</Label>
+				<ScrollView Grid.Row="1" Grid.Column="9" IsVisible="{Binding ShowNativeVillage}">
 					<StackLayout x:Name="NativeVillage"/>
 				</ScrollView>
 
-				<Label Grid.Column="10">PossNV</Label>
-				<ScrollView Grid.Row="1" Grid.Column="10">
+				<Label Grid.Column="10" IsVisible="{Binding ShowPossessedPlayerNativeVillage}">PossNV</Label>
+				<ScrollView Grid.Row="1" Grid.Column="10" IsVisible="{Binding ShowPossessedPlayerNativeVillage}">
 					<StackLayout x:Name="PossNV"/>
 				</ScrollView>
 
@@ -123,7 +127,15 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 			<Button x:Name="EndTurnButton" FontSize="20" Clicked="EndTurn_Click" IsVisible="{Binding ShowEndTurnButton}" Text="End Turn" />
 			<Button x:Name="ExitButton" FontSize="20"  Clicked="Exit_Click" IsVisible="{Binding ShowExitButton}" Text="Exit" />
 		</StackLayout>
-
+    <Label Grid.Row="2" x:Name="StatusText" Text="{Binding StatusText}" Grid.ColumnSpan="3" ></Label>
+   <StackLayout x:Name="Details" Grid.ColumnSpan="3" HorizontalOptions="Fill" Grid.Row="4" VerticalOptions="Fill" Orientation="Horizontal">
+			<Label Text="Actions: "/>
+			<Label Text="{Binding GameViewModel.CurrentPlayer.Actions}"/>
+			<Label Text="Buys: " Margin="20,0,0,0"/>
+			<Label Text="{Binding GameViewModel.CurrentPlayer.Buys}"/>
+			<Label Text="Coins: " Margin="20,0,0,0"/>
+			<Label Text="{Binding GameViewModel.CurrentPlayer.Coin}"/>
+		</StackLayout>
 	</Grid>
 	</ContentPage.Content>
 </ContentPage>

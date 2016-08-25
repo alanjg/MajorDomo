@@ -22,6 +22,7 @@ namespace DominionXamarinForms
 		private UICollectionSynchronizer possessionNativeVillageSynchronizer;
 		private UICollectionSynchronizer trashSynchronizer;
 
+        private const double ButtonWidth = 70.0;
 		public GamePage ()
 		{
 			App.CurrentGame = new LocalGame ();
@@ -67,32 +68,33 @@ namespace DominionXamarinForms
 			if (!this.initializedStacks) {
 				this.initializedStacks = true;
 				foreach (PileViewModel pile in App.CurrentGame.GamePageModel.GameViewModel.BasicTreasurePiles) {
-					Button button = new Button () { Text = pile.TopCard.Name };
+					Button button = new Button () { Text = pile.TopCard.Name, WidthRequest = ButtonWidth };
 					button.Clicked += (object sender, EventArgs e) => this.gamePageModel.InvokePile(pile);
 					this.Treasure.Children.Add (button);
 				}
 				foreach (PileViewModel pile in App.CurrentGame.GamePageModel.GameViewModel.BasicVictoryPiles) {
-					Button button = new Button () { Text = pile.TopCard.Name };
+					Button button = new Button () { Text = pile.TopCard.Name, WidthRequest = ButtonWidth };
 					button.Clicked += (object sender, EventArgs e) => this.gamePageModel.InvokePile(pile);
 					this.Victory.Children.Add (button);
 				}
 				foreach (PileViewModel pile in App.CurrentGame.GamePageModel.GameViewModel.KingdomPiles1of3) {
-					Button button = new Button () { Text = pile.TopCard.Name };
+					Button button = new Button () { Text = pile.TopCard.Name, WidthRequest = ButtonWidth };
 					button.Clicked += (object sender, EventArgs e) => this.gamePageModel.InvokePile(pile);
 					this.Kingdom1.Children.Add (button);
 				}
 				foreach (PileViewModel pile in App.CurrentGame.GamePageModel.GameViewModel.KingdomPiles2of3) {
-					Button button = new Button () { Text = pile.TopCard.Name };
+					Button button = new Button () { Text = pile.TopCard.Name, WidthRequest = ButtonWidth };
 					button.Clicked += (object sender, EventArgs e) => this.gamePageModel.InvokePile(pile);
 					this.Kingdom2.Children.Add (button);
 				}
 				foreach (PileViewModel pile in App.CurrentGame.GamePageModel.GameViewModel.KingdomPiles3of3) {
-					Button button = new Button () { Text = pile.TopCard.Name };
+					Button button = new Button () { Text = pile.TopCard.Name, WidthRequest = ButtonWidth };
 					button.Clicked += (object sender, EventArgs e) => this.gamePageModel.InvokePile(pile);
 					this.Kingdom3.Children.Add (button);
 				}
+                this.CardGrid.ColumnDefinitions[3].Width = 0;
 
-				this.handSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Hand, this.Hand, this.gamePageModel);
+                this.handSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Hand, this.Hand, this.gamePageModel);
 				this.playedSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Played, this.Played, this.gamePageModel);
 				this.cardChoiceSynchronizer = new UICollectionSynchronizer (this.gamePageModel.CardChoice, this.CardChoice, this.gamePageModel);
 				this.possessionHandSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PossessedPlayerViewModel.Hand, this.PossHand, this.gamePageModel);
