@@ -8,8 +8,10 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 			<ResourceDictionary>
 				<local:BoolToSizeConverter x:Key="ShowCardConverter" TrueValue="80" FalseValue="0"/>
         <Style TargetType="Button">
-          <Setter Property="FontSize" Value="8"/>
+          <Setter Property="FontSize" Value="11"/>
           <Setter Property="Margin" Value="0"/>
+          <Setter Property="BorderWidth" Value="1"/>
+          <Setter Property="HeightRequest" Value="40"/>
         </Style>
 			</ResourceDictionary>
 		</Grid.Resources>
@@ -59,7 +61,7 @@ xmlns:local="clr-namespace:DominionXamarinForms"
 
 				<Label>Hand</Label>
 				<ScrollView Grid.Row="1" Grid.Column="0" Orientation="Vertical">
-					<StackLayout x:Name="Hand"/>
+					<StackLayout x:Name="Hand" Spacing="0" Padding="0"/>
 				</ScrollView>
 
 				<Label Grid.Column="1">Played</Label>

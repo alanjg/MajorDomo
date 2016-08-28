@@ -100,7 +100,8 @@ namespace DominionXamarinForms
 				this.possessionHandSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PossessedPlayerViewModel.Hand, this.PossHand, this.gamePageModel);
 				this.possessionPlayedSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PossessedPlayerViewModel.Played, this.PossPlay, this.gamePageModel);
 				this.cleanupSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Cleanup, this.Cleanup, this.gamePageModel);
-				this.islandSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Island, this.Island, this.gamePageModel);
+                this.possessionCleanupSynchronizer = new UICollectionSynchronizer(this.gamePageModel.PossessedPlayerViewModel.Cleanup, this.PossClean, this.gamePageModel);
+                this.islandSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.Island, this.Island, this.gamePageModel);
 				this.nativeVillageSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PlayerViewModel.NativeVillage, this.NativeVillage, this.gamePageModel);
 				this.possessionNativeVillageSynchronizer = new UICollectionSynchronizer (this.gamePageModel.PossessedPlayerViewModel.NativeVillage, this.PossNV, this.gamePageModel);
 				this.trashSynchronizer = new UICollectionSynchronizer (this.gamePageModel.GameViewModel.Trash, this.Trash, this.gamePageModel);
