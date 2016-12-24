@@ -233,3 +233,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+DominionEngineUWP/project.lock.json
+DominionUWP/project.lock.json
+DominionUWPLibrary/project.lock.json
+Droid/Resources/Resource.designer.cs
