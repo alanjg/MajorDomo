@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="DominionXamarinForms.MainPage">
 	<ContentPage.Content>
-
+    <StackLayout>
+      <Button Clicked="newSinglePlayerGamePreset" Text="Preset Kingdom" />
+      <Button Clicked="newSinglePlayerGameCustom" Text="Custom Kingdom" />
+      <Button Clicked="newSinglePlayerGameRandom" Text="Random Kingdom" />
+      <Button x:Name="MultiplayerGameButton" Clicked="newMultiPlayerGame"  Text="Multi Player" />
+      <Button x:Name="ResumeGameButton" Clicked="resumeGame" Text="Resume Game" />
+      <Button x:Name="RecordsGameButton" Clicked="records" Text="Records" />
+      <Button x:Name="SettingsGameButton" Clicked="settings" Text="Settings" />
+      <Button x:Name="AboutGameButton" Clicked="about" Text="About" />
+    </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

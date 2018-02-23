@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DominionXamarinForms.GameLobbyPage"
+             xmlns:local="clr-namespace:DominionXamarinForms">
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.Resources>
+      <local:BoolToCollapsedConverter x:Key="BoolToCollapsedConverter" />
+      <local:BoolToVisibilityConverter x:Key="BoolToVisibleConverter" />
+    </Grid.Resources>
+    
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <ListView x:Name="UsersListBox" Grid.RowSpan="2" ItemsSource="{Binding Users}"></ListView>
+    <Label x:Name="ProposedGameTextBlock" Grid.RowSpan="2" Grid.Column="1" Text="{Binding GameInviteStatusText}" />
+    <StackPanel Grid.Column="2" Grid.RowSpan="2">
+      <Button Click="RequestGame" Visibility="{Binding ShowRequestGameButton, Converter={StaticResource BoolToVisibleConverter}}">Request Game</Button>
+      <Button Click="AcceptGame" Visibility="{Binding ShowAcceptGameButton, Converter={StaticResource BoolToVisibleConverter}}">Accept Game</Button>
+      <Button Click="DeclineGame" Visibility="{Binding ShowDeclineGameButton, Converter={StaticResource BoolToVisibleConverter}}">Decline Game</Button>
+      <Button Click="CancelGame" Visibility="{Binding ShowCancelGameButton, Converter={StaticResource BoolToVisibleConverter}}">Cancel Game</Button>
+    </StackPanel>
+    <ListView x:Name="ChatTextBlock" Grid.Row="2" ItemsSource="{Binding Chat}"></ListView>
+    <Entry x:Name="ChatEntryTextBox" Grid.Column="1" Grid.Row="3"/>
+    <Button Click="SendChat" Grid.Row="2" Grid.Column="2" x:Name="SendChatButton">Send</Button>
+  </Grid>
+
+</ContentPage>

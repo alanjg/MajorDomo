@@ -430,6 +430,7 @@
     <Compile Include="ViewModel\Game.cs" />
     <Compile Include="ViewModel\GamePageModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
+    <Compile Include="ViewModel\HandCardComparer.cs" />
     <Compile Include="ViewModel\IDisplayable.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\PileViewModel.cs" />

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DominionXamarinForms"
+             x:Class="DominionXamarinForms.GameRecordViewerPage">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.Resources>
+      <DataTemplate x:Key="PlayerTemplate">
+        <StackPanel>
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}"/>
+            <TextBlock Text=": "/>
+            <TextBlock Text="{Binding Score}" />
+          </StackPanel>
+          <TextBlock Text="{Binding Deck}" TextWrapping="Wrap"/>
+        </StackPanel>
+      </DataTemplate>
+      <DataTemplate x:Key="TurnTemplate">
+        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+      </DataTemplate>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <!--TitlePanel contains the name of the application and page title-->
+    <StackPanel Grid.Row="0" Margin="12,17,0,28">
+      <TextBlock Text="MAJORDOMO" Style="{StaticResource PhoneTextNormalStyle}"/>
+      <TextBlock Text="game record" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+    </StackPanel>
+
+    <!--ContentPanel - place additional content here-->
+
+    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+      <ScrollViewer>
+        <StackPanel>
+          <ItemsControl ItemsSource="{Binding Players}" ItemTemplate="{StaticResource PlayerTemplate}" />
+          <ItemsControl Margin="0,8,0,0" ItemsSource="{Binding Log}" ItemTemplate="{StaticResource TurnTemplate}" />
+        </StackPanel>
+      </ScrollViewer>
+
+    </Grid>
+  </Grid>
+</ContentPage>

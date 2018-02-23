@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DominionXamarinForms.AboutPage">
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+			<ScrollView>
+				<StackLayout>
+					<Label Padding="20" TextWrapping="Wrap" >MajorDomo is an unofficial computer version of the Dominion card game.  Dominion is published by Rio Grande Games.</Label>
+					<Label Style="{StaticResource PhoneTextTitle2Style}">Support, bugs, feedback:</Label>
+					<HyperlinkButton Padding="20" TargetName="foo" NavigateUri="mailto:majordomowp@outlook.com">majordomowp@outlook.com</HyperlinkButton>
+					<Label Style="{StaticResource PhoneTextTitle2Style}">How to play</Label>
+					<StackLayout Margin="20">
+						<HyperlinkButton TargetName="foo" NavigateUri="http://wiki.dominionstrategy.com/index.php/New_To_Dominion">Click here if you are new to Dominion</HyperlinkButton>
+						<Label></Label>
+						<Label TextWrapping="Wrap">On your turn, you can play actions or treasures by tapping the cards in your hand.  You can buy cards during the buy phase(if you can afford them) by tapping on the pile.  If you have extra buys, you must press the End Turn button to end your turn even if you are out of money(since you might want to purchase Copper).  If you have actions left to play, but don't wish to play them, you can press the Buy Phase button to switch to the buy phase - otherwise, MajorDomo will prevent you from buying cards(since once you start the buy phase, you are not allowed to play further actions).  </Label>
+						<Label></Label>
+						<Label TextWrapping="Wrap">Playing some actions and treasures will result in choices.  If the choice is related to a card in the supply, you will have to tap on the supply piles at the top of the screen.  Otherwise, the choice can be made by tapping on the appropriate card column(in hand, in play, etc).  Some choices are optional - in that case, you may choose to do nothing by pressing the OK button.  Some choices allow or require you to choose multiple cards or options, in which case you must press the OK button to confirm your choices.  Options from supply piles or your hand will turn red, to distinguish from playing those cards on your turn.  Some choices will be made automatically if there is only a single option available.</Label>
+						<Label></Label>
+						<Label TextWrapping="Wrap">You may tap and hold a card or pile to see the details of that card(this also works on the kingdom picker screen).  All card lists are scrollable if you have enough cards(e.g. a large hand), so be aware that you may have more cards off the screen.</Label>
+					</StackLayout>				
+				</StackLayout>
+			</ScrollView>
+		</Grid>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DominionXamarinForms.RecordsPage">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <!--
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.Resources>
+      <local:BoolToBrushConverter x:Name="WonToBorderBrushConverter" FalseValue="Red" TrueValue="Green" />
+      <DataTemplate x:Key="PlayerTemplate">
+        <Border BorderThickness="1">
+          <StackPanel>
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="{Binding Name}"/>
+              <TextBlock Text=": " />
+              <TextBlock Text="{Binding Score}" />
+            </StackPanel>
+            <TextBlock Text="{Binding Deck}" TextWrapping="Wrap"/>
+          </StackPanel>
+        </Border>
+      </DataTemplate>
+      <DataTemplate x:Key="GameTemplate">
+        <Border BorderThickness="2" BorderBrush="{Binding Won, Converter={StaticResource WonToBorderBrushConverter}}">
+          <StackPanel Tap="StackPanel_Tap">
+            <ItemsControl ItemsSource="{Binding Players}" ItemTemplate="{StaticResource PlayerTemplate}" />
+          </StackPanel>
+        </Border>
+      </DataTemplate>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0" Margin="12,17,0,28">
+      <TextBlock Text="MAJORDOMO" Style="{StaticResource PhoneTextNormalStyle}"/>
+      <TextBlock Text="records" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+    </StackPanel>
+
+    <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+      <StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Wins: "/>
+          <TextBlock x:Name="WinsText" Text="{Binding Wins}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Losses: "/>
+          <TextBlock x:Name="LossesText" Text="{Binding Losses}"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+          <TextBlock Text="Win ratio: "/>
+          <TextBlock x:Name="WinRatioText" Text="{Binding WinRatio}"></TextBlock>
+        </StackPanel>
+        <TextBlock>Recent Games</TextBlock>
+      </StackPanel>
+      <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+        <ItemsControl ItemsSource="{Binding GameRecords}" ItemTemplate="{StaticResource GameTemplate}"/>
+      </ScrollViewer>
+    </Grid>
+    <Button VerticalAlignment="Bottom" Grid.Row="2" Click="Button_Click">Reset History</Button>
+  </Grid>
+  -->
+</ContentPage>

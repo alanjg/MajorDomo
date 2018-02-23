@@ -25,11 +25,6 @@ namespace DominionXamarinForms
         private const double ButtonWidth = 70.0;
 		public GamePage ()
 		{
-			App.CurrentGame = new LocalGame ();
-			Kingdom kingdom = new Kingdom (null, null, GameSets.Any, 2);
-			App.CurrentGame.GamePageModel.Kingdom = kingdom;
-			App.CurrentGame.PlayGame ();
-
 			this.gamePageModel = App.CurrentGame.GamePageModel;
 			this.BindingContext = this.gamePageModel;
 			InitializeComponent ();
@@ -157,7 +152,10 @@ namespace DominionXamarinForms
 
 		private void Exit_Click(object sender, EventArgs e)
 		{
-		}
+            App.CurrentGame.CancelGame();
+            App.CurrentGame = null;
+            App.Instance.MainPage = new MainPage();
+        }
 	}
 }
 

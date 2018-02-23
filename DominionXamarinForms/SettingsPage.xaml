@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DominionXamarinForms.SettingsPage">
+  <Grid>
+    <ScrollView Orientation="Vertical">
+      <StackLayout Orientation="Vertical">
+        <Label Text="Difficulty" />
+        <Picker x:Name="DifficultyPicker" Title="Difficulty" SelectedIndex="0"/>
+        <Label Text="Show Player Score" />
+        <Switch IsToggled="{Binding ShowPlayerScore}" />
+        <Label Text="Use random cards (bane, black market) from chosen sets only"/>
+        <Switch IsToggled="{Binding UseRandomCardsFromChosenSetsOnly}" />
+
+
+        <Label Text="Use Colonies:"/>
+        <Picker x:Name="UseColoniesPicker" SelectedIndex="0" />
+
+
+        <Label Text="Use random cards (bane, black market) from chosen sets only"/>
+        <Switch IsToggled="{Binding UseRandomCardsFromChosenSetsOnly}" />
+
+
+        <Label Text="Use random cards (bane, black market) from chosen sets only"/>
+        <Switch IsToggled="{Binding UseRandomCardsFromChosenSetsOnly}" />
+      </StackLayout>
+    </ScrollView>
+  </Grid>
+  <!--
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.Resources>
+      <DataTemplate x:Key="GameSetTemplate">
+        <CheckBox IsChecked="{Binding Selected, Mode=TwoWay}" Content="{Binding SetName}" />
+      </DataTemplate>
+      <local:CardUseTypeConverter x:Key="CardUseTypeConverter"/>
+
+      <DataTemplate x:Key="CardUseTemplate">
+        <TextBlock Text="{Binding Converter={StaticResource CardUseTypeConverter}}"/>
+      </DataTemplate>
+
+      <local:StartingHandTypeConverter x:Key="StartingHandTypeConverter"/>
+      <DataTemplate x:Key="StartingHandTemplate">
+        <TextBlock Text="{Binding Converter={StaticResource StartingHandTypeConverter}}"/>
+      </DataTemplate>
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel Grid.Row="0" Margin="12,17,0,28">
+      <TextBlock Text="MAJORDOMO" Style="{StaticResource PhoneTextNormalStyle}"/>
+      <TextBlock Text="settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+    </StackPanel>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
+      <StackPanel x:Name="ContentPanel">
+        
+        <StackPanel Name="SettingsPanel">
+         
+            <Border Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,0,-2,0"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="12,0,10,0">Use Colonies:</TextBlock>
+            <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" ItemsSource="{Binding UseColoniesChoices}" SelectedItem="{Binding UseColonies, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+            <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,4,-2,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="12,4,10,0">Use Shelters:</TextBlock>
+            <ComboBox Grid.Row="1" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding UseSheltersChoices}" SelectedItem="{Binding UseShelters, Mode=TwoWay}" ItemTemplate="{StaticResource CardUseTemplate}"></ComboBox>
+            <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1" Margin="10,4,-2,0"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Margin="12,4,10,0">Starting Hands:</TextBlock>
+            <ComboBox Grid.Row="2" Grid.Column="1" Margin="5,4,0,0" ItemsSource="{Binding StartingHandTypeChoices}" SelectedItem="{Binding StartingHandType, Mode=TwoWay}" ItemTemplate="{StaticResource StartingHandTemplate}"></ComboBox>
+          </Grid>
+        </StackPanel>
+        <TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Card sets</TextBlock>
+        <ItemsControl x:Name="GameSetsList" ItemsSource="{Binding GameSets}" ItemTemplate="{StaticResource GameSetTemplate}"/>
+        <TextBlock Margin="20,0,20,0">Prohibited Cards</TextBlock>
+        <TextBox x:Name="ProhibitedCardsTextBox" Margin="10,0,10,0" Text="{Binding ProhibitedCardsString, Mode=TwoWay}"></TextBox>
+        <TextBlock Style="{StaticResource PhoneTextGroupHeaderStyle}">Multiplayer</TextBlock>
+        <TextBlock>Online multiplayer is under development and may not be functional.</TextBlock>
+        <CheckBox Margin="10,10,0,0" Name="EnableMultiplayerCheckBox" IsChecked="{Binding HasEnabledMultiplayer, Mode=TwoWay}">Enable online multiplayer (beta)</CheckBox>
+        <TextBlock Margin="20,0,20,0">User Name</TextBlock>
+        <TextBox x:Name="UserNameTextBox"  Margin="10,0,10,0" Text="{Binding UserName, Mode=TwoWay}"></TextBox>
+        <TextBlock Margin="20,0,20,0">Custom Server Address (used for debugging)</TextBlock>
+        <TextBox x:Name="ServerAddressTextBox" Margin="10,0,10,0" Text="{Binding ServerAddress, Mode=TwoWay}"></TextBox>
+
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
+  -->
+</ContentPage>

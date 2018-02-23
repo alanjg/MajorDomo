@@ -20,6 +20,7 @@ bld/
 [Oo]bj/
 
 Resource.designer.cs
+Resources.designer.cs
 project.lock.json
 
 # Roslyn cache directories
@@ -237,3 +238,4 @@ DominionEngineUWP/project.lock.json
 DominionUWP/project.lock.json
 DominionUWPLibrary/project.lock.json
 Droid/Resources/Resource.designer.cs
+DominionEngineUWP/project.lock.json

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DominionXamarinForms.ErrorPage">
+  <FrameworkElement.Resources>
+    <DataTemplate x:Key="ExceptionTemplate">
+      <StackLayout>
+        <Label Text="{Binding Message}"/>
+        <Label Text="{Binding StackTrace}" />
+      </StackLayout>
+    </DataTemplate>
+  </FrameworkElement.Resources>
+  <!--LayoutRoot is the root grid where all page content is placed-->
+  <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+      <Label Text="an error occurred" />
+    
+    
+      <ScrollView VerticalScrollBarVisibility="Auto" Grid.Row="1" >
+        <ListView ItemsSource="{Binding Exceptions}" ItemTemplate="{StaticResource ExceptionTemplate}"/>
+      </ScrollView>
+  </Grid>
+
+</ContentPage>
