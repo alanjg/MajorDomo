@@ -52,25 +52,29 @@
       <toolkit:WrapPanel/>
     </ItemsPanelTemplate>
   </FrameworkElement.Resources>
-  
-  <Grid x:Name="LayoutRoot" Background="Transparent">
+  -->
+  <Grid x:Name="LayoutRoot">
     <Grid.RowDefinitions>
       <RowDefinition Height="599*"/>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="201*"/>
     </Grid.RowDefinitions>
-    <phone:Pivot Title="MAJORDOMO" ItemsSource="{Binding CardCollections}" HeaderTemplate="{StaticResource CardCollectionHeaderTemplate}" ItemTemplate="{StaticResource CardCollectionTemplate}" SelectionChanged="Pivot_SelectionChanged"/>
-    <TextBlock Grid.Row="1">Selected Cards (10 required)</TextBlock>
-    <ItemsControl Grid.Row="2" ItemsSource="{Binding SelectedCards}" ItemTemplate="{StaticResource PickedCardTemplate}" Margin="0,0,154,40" ItemsPanel="{StaticResource WrapPanelTemplate}"/>
-    <StackPanel x:Name="BaneDisplay" Orientation="Horizontal" Margin="10,148,159,10" Grid.Row="2" Visibility="Collapsed">
-      <TextBlock Margin="2">Bane: </TextBlock>
-      <ContentControl Content="{Binding BaneCard}" ContentTemplate="{StaticResource PickedCardTemplate}"/>
-    </StackPanel>
-    <StackPanel Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Right">
-      <ToggleButton x:Name="BaneButton" Content="Bane" Click="Click_Bane" Visibility="Collapsed" />
-      <Button Content="Fill" Click="Click_Fill"/>
-      <Button Content="OK"  Click="Click_OK"/>
-    </StackPanel>
+    <ScrollView Orientation="Horizontal" Grid.Row="0" >
+      <StackLayout x:Name="CardCollectionsLayout" Orientation="Horizontal" />
+    </ScrollView>
+    <Label Grid.Row="1">Selected Cards (10 required)</Label>
+		<StackLayout Grid.Row="2" x:Name="SelectedCardsLayout" Margin="0,0,154,40"/>
+		<StackLayout x:Name="BaneDisplay" Orientation="Horizontal" Margin="10,148,159,10" Grid.Row="2" IsVisible="false">
+      <Label Margin="2">Bane: </Label>
+      <Label x:Name="BaneControl"/>
+    </StackLayout>
+		<StackLayout Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="End">
+			<Label x:Name="BaneText" Text="Bane" IsVisible="false" />
+      <Switch x:Name="BaneButton" Toggled="Click_Bane" IsVisible="false" />
+      <Button Text="Fill" Clicked="Click_Fill"/>
+      <Button Text="OK"  Clicked="Click_OK"/>
+    </StackLayout>
+		<!--
     <Grid x:Name="CardDetailsPopup" Grid.RowSpan="5" Grid.ColumnSpan="3" Visibility="Collapsed" Background="{StaticResource PhoneBackgroundBrush}">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
@@ -86,6 +90,7 @@
       <TextBlock Text="{Binding Text}" FontSize="{StaticResource PhoneFontSizeNormal}" TextWrapping="Wrap" Grid.Row="4"/>
       <Button Click="CardDetailsClick" Content="OK" Grid.Row="5" Height="100" VerticalAlignment="Bottom"/>
     </Grid>
+		-->
   </Grid>
--->
+
 </ContentPage>
