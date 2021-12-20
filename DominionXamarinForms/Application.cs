@@ -60,7 +60,7 @@ namespace DominionXamarinForms
 		}
 	}
 
-	public class XamarinDispatcher : IDispatcher
+	public class XamarinDispatcher : Dominion.IDispatcher
 	{
 		public void BeginInvoke(Action action)
 		{

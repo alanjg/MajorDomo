@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-#if !SILVERLIGHTDESKTOP
 using System.Xml.Linq;
-#endif
 namespace Dominion
 {
 	[Flags]
@@ -137,7 +135,6 @@ namespace Dominion
 			if (cards == null)
 			{
 				cards = new Dictionary<string, Dominion.CardInfo>();
-#if !SILVERLIGHTDESKTOP
 				try
 				{
 					XDocument document = XDocument.Load("cards.xml");
@@ -154,7 +151,6 @@ namespace Dominion
 				catch
 				{
 				}
-#endif
 			}
 		}
 

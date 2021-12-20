@@ -238,7 +238,7 @@ namespace DominionEngine.AI
 						selected = c;
 						bestValue = uctValue;
 					}
-				}				
+				}
 			}
 			return selected;
 		}
